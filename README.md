@@ -8,9 +8,11 @@ No one should be forced to use such an awful interface, but a lot of us have to,
 
 Internally, I am able to create a CSV file containing all information about my department's upcoming course offerings. Something like this:
 
+```
 ASTR-101,01,01,LEC,053 -0215,MTWR,03:10 PM,04:00 PM,Y,70,E,last1,first1,emplid1,,
-ASTR-102,01,01,LEC,,MTWR,,,Y,120,E,last2,first2,emplid1,,
-ASTR-102,02,02,LEC,053 -0206,MTWR,04:10 PM,05:00 PM,Y,70,E,Shlaer,Ben,emplid1,,
-ASTR-324,01,01,LEC,053 -0215,MTWR,01:10 PM,02:00 PM,Y,48,E,Bensky,Tom,emplid1,,
-GEOL-102,01,01,LEC,,MW,07:40 AM,09:00 AM,Y,120,E,Jasbinsek,John J.,emplid1,,
-GEOL-102,02,9999,DIS,180 -0233,W,10:10 AM,11:00 AM,Y,30,N,Jasbinsek,John J.,emplid1,,
+ASTR-102,01,01,LEC,,MTWR,,,Y,120,E,last2,first2,emplid2,,
+ASTR-102,02,02,LEC,053 -0206,MTWR,04:10 PM,05:00 PM,Y,70,E,last1,first1,emplid1,,
+ASTR-324,01,01,LEC,053 -0215,MTWR,01:10 PM,02:00 PM,Y,48,E,last1,first1,emplid1,,
+GEOL-102,01,01,LEC,,MW,07:40 AM,09:00 AM,Y,120,E,last1,first1,emplid1,,
+GEOL-102,02,9999,DIS,180 -0233,W,10:10 AM,11:00 AM,Y,30,N,first1,emplid1,,
+```
