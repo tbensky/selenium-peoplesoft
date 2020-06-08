@@ -11,8 +11,9 @@ Internally, I am able to create a CSV file containing all information about my d
 ```
 ASTR-101,01,01,LEC,053 -0215,MTWR,03:10 PM,04:00 PM,Y,70,E,last1,first1,emplid1,,
 ASTR-102,01,01,LEC,,MTWR,,,Y,120,E,last2,first2,emplid2,,
-ASTR-102,02,02,LEC,053 -0206,MTWR,04:10 PM,05:00 PM,Y,70,E,last1,first1,emplid1,,
-ASTR-324,01,01,LEC,053 -0215,MTWR,01:10 PM,02:00 PM,Y,48,E,last1,first1,emplid1,,
-GEOL-102,01,01,LEC,,MW,07:40 AM,09:00 AM,Y,120,E,last1,first1,emplid1,,
-GEOL-102,02,9999,DIS,180 -0233,W,10:10 AM,11:00 AM,Y,30,N,first1,emplid1,,
+ASTR-102,02,02,LEC,053 -0206,MTWR,04:10 PM,05:00 PM,Y,70,E,last3,first3,emplid3,,
+ASTR-324,01,01,LEC,053 -0215,MTWR,01:10 PM,02:00 PM,Y,48,E,last4,first4,emplid4,,
+GEOL-102,01,01,LEC,,MW,07:40 AM,09:00 AM,Y,120,E,last5,first5,emplid5,,
+GEOL-102,02,9999,DIS,180 -0233,W,10:10 AM,11:00 AM,Y,30,N,last6,first6,emplid6,,
 ```
+Here you can see classes, week days, times, etc. This is our schedule, and this must go into PS.
