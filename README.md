@@ -18,7 +18,7 @@ I'm not even sure what "PeopleSoft" (PS) is, but the curse for me is the web-bas
 
 Ok, finally. Everyone has to type an extra space, and zero pad the room number. Everyone, everytime. Wow.
 
-![Firefox web inspector](Images/005_180101_03png?raw=true)
+![Firefox web inspector](Images/005_180101_03.png?raw=true)
 
 
 Then there's the dreaded spinners and calls to the server with each focus change for a every entry element (=slow). 
