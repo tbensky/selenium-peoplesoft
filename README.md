@@ -54,4 +54,7 @@ with webdriver.Firefox() as driver:
     print(first_result.get_attribute("textContent"))
 ```
 
-Casually browsing the code, you can see how the page ```https://google.com/ncr``` is requested.  Google's search box is famously referred in the underlying HTML by the same of ```q``.  Given lags and general random time delays on the web, 
+Casually browsing the code, you can see how the page ```https://google.com/ncr``` is requested.  Google's search box is famously referred in the underlying HTML by the same of ```q```. You tell Selenium to find this elements in the HTML data on Google's main search page (```find_element```).  Once found, into this element you have Selenium type, via the ```send_keys``` function, the text ```cheese``` followed by return. In other words, you search for the word ```cheese.```
+Given lags and general random time delays on the web, you don't expect any server pages to be loaded instantly, so you tell the web-driver to always wait 10 seconds for result before timing out. You can do whatever you wish with the result of your search query. In this case, the HTML fragment ```h3>div``` which starts the "Show More" clickable tag on the search results page.
+
+This in a nutshell, is what you do with Selenium: direct it to load pages from the web, then look for things of interest to you in the text of web-pages read back into variables, then act on them. This means fill in text-boxes, click on links, etc.
