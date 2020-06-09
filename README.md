@@ -35,3 +35,23 @@ At one point a while back, I said "enough."  A friend who does web-development o
 
 
 # Automating
+
+If you're curious, [the documentation](https://www.selenium.dev/documentation) for Selenium is excellent. This first Python example shows you the general plan:
+
+```
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support.expected_conditions import presence_of_element_located
+
+#This example requires Selenium WebDriver 3.13 or newer
+with webdriver.Firefox() as driver:
+    wait = WebDriverWait(driver, 10)
+    driver.get("https://google.com/ncr")
+    driver.find_element(By.NAME, "q").send_keys("cheese" + Keys.RETURN)
+    first_result = wait.until(presence_of_element_located(By.CSS_SELECTOR, "h3>div"))
+    print(first_result.get_attribute("textContent"))
+```
+
+Casually browsing the code, you can see how the page ```https://google.com/ncr``` is requested.  Google's search box is famously referred in the underlying HTML by the same of ```q``.  Given lags and general random time delays on the web, 
