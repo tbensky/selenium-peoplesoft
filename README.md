@@ -10,7 +10,7 @@ I'm not even sure what "PeopleSoft" (PS) is, but the curse for me is the web-bas
 
 Then there's the dreaded spinners and calls to the server with each focus change for a every entry element (=slow). 
 
-![Firefox web inspector](Images/004_spinner?raw=true)
+![PS Spinner](Images/004_spinner.png?raw=true)
 
 There's also no "save and exit" button (it's always click to save, then another click to exit. And, the "Are you sure you want to exit" warning doesn't have a "Save, then Exit" option).  
 
