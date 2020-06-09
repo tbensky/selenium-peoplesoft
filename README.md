@@ -66,6 +66,18 @@ Let's go a step further, and have Selenium click on the "Next" link, to take us 
 
 What I did is to download the "developer edition" of the Firefox browser. It has a "web inspector" which you can find here
 
-![Alt text](Images/001_inspector.png?raw=true)
+![Firefox web inspector](Images/001_inspector.png?raw=true)
+
+When this is active the browser looks like this
+
+![Firefox web inspector](Images/002_q_box.png?raw=true)
+
+Where you can now peek down in the HTML code of Google's home page to see what part of it is generating the search box. In this case, it's
+
+```
+<input class="gLFyf gsfi" maxlength="2048" name="q" type="text" jsaction="paste:puy29d" aria-autocomplete="both" aria-haspopup="false" autocapitalize="off" autocomplete="off" autocorrect="off" autofocus="" role="combobox" spellcheck="false" title="Search" value="" aria-label="Search" data-ved="0ahUKEwjywISjl_XpAhV0HjQIHVhCC1oQ39UDCAY">
+```
+
+
 
 This in a nutshell, is what you do with Selenium: direct it to load pages from the web, then look for things of interest to you in the text of web-pages read back into variables, then act on them. This means fill in text-boxes, click on links, etc.
