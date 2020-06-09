@@ -1,6 +1,6 @@
 # Using PeopleSoft
 
-I've had to use PeopleSoft for part of my job for about 6 years now, and I've concluded that: PeopleSoft is a curse on humanity.  
+I've had to use PeopleSoft for part of my job (scheduling classes in a university physics department) for about 6 years now, and I've concluded that: PeopleSoft is a curse on humanity.  
 
 I'm not even sure what "PeopleSoft" (PS) is, but the curse for me is the web-based user interface to CRUDing on a backend database that runs my organization (a large university). I actually feel sorry for anyone who uses PS, and a lot of people do. You can spot on a screen it a mile away. The tight, small fonts and little boxes littered all over the screen. There's no responsive behavior, and it's univiting, slow and unintuitive. There's no modern look to the elements (a la Bootstrap, etc.) and some boxes are too small for content they are to hold. See here for a box that is supposed to hold five letters, each a day of the work-week:
 
