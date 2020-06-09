@@ -51,7 +51,6 @@ with webdriver.Chrome('/Users/tom/Dropbox/Selenium/chromedriver') as driver:
     wait = WebDriverWait(driver, 10)
     driver.get("https://google.com/ncr")
     driver.find_element(By.NAME, "q").send_keys("cheese" + Keys.RETURN)
-    #first_result = wait.until(presence_of_element_located(By.CSS_SELECTOR, "h3>div"))
     first_result = WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.CSS_SELECTOR , "h3>div")))
     print(first_result.get_attribute("textContent"))
 ```
@@ -78,6 +77,21 @@ Where you can now peek down in the HTML code of Google's home page to see what p
 <input class="gLFyf gsfi" maxlength="2048" name="q" type="text" jsaction="paste:puy29d" aria-autocomplete="both" aria-haspopup="false" autocapitalize="off" autocomplete="off" autocorrect="off" autofocus="" role="combobox" spellcheck="false" title="Search" value="" aria-label="Search" data-ved="0ahUKEwjywISjl_XpAhV0HjQIHVhCC1oQ39UDCAY">
 ```
 
+You can clearly see the ```name="q"``` tag, which is the same "q" we had Selenium type "cheese" into above. 
 
+The "next" link is similarly revealed here:
+
+![Firefox web inspector](Images/003_next.png?raw=true)
+
+Thus, we can look for an element whose HTML ```id``` is ```pnnext``` and tell Seleniun to click on it via
+
+```
+elem = driver.find_element_by_id("pnnext")
+elem.click();
+```
 
 This in a nutshell, is what you do with Selenium: direct it to load pages from the web, then look for things of interest to you in the text of web-pages read back into variables, then act on them. This means fill in text-boxes, click on links, etc.
+
+# PeopleSoft
+
+
