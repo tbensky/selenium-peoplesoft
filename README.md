@@ -6,9 +6,15 @@ I'm not even sure what "PeopleSoft" (PS) is, but the curse for me is the web-bas
 
 ![Firefox web inspector](Images/000_day_pattern.png?raw=true)
 
- Changes are impossible to implement, because PS is typically used by large organizations requring many levels of committees for approving fixes. I for example, would like the box that is to contain 5 letters (one for each day of the week), to be wide enough for all 5 letters at a time. Some text-entry boxes require one to input data in a certain format, which could be eliminated with a trivial form-data post-processing step of having the computer pad numbers with zeros and place a space between them.
+ Changes are impossible to implement, because PS is typically used by large organizations requring many levels of committees for approving fixes. Some text-entry boxes require one to input data in a certain format, which could be eliminated with a form-data post-processing step on the server side of having the computer pad numbers with zeros and place a space between them.
 
-Then there's the dreaded spinners and calls to the server with each focus change for a every entry element (=slow). There's also no "save and exit" button (it's always click to save, then another click to exit. And, the "Are you sure you want to exit" warning doesn't have a "Save, then Exit" option).  
+Then there's the dreaded spinners and calls to the server with each focus change for a every entry element (=slow). 
+
+![Firefox web inspector](Images/004_spinner?raw=true)
+
+<img src="Images/004_spinner.png">
+
+There's also no "save and exit" button (it's always click to save, then another click to exit. And, the "Are you sure you want to exit" warning doesn't have a "Save, then Exit" option).  
 
 No one should be forced to use such an awful interface, but a lot of us have to, since it's the backend that runs many large organizations. In my case, a major American university. I must use PS to tell the university about my local department's scheduling plans for upcoming terms (what classes, where, times of day, intructor names, etc.).  Once in a backend database, the data then goes to student registration pages (also some derivative of PS), payroll, tuition bills, etc. But of course it's refreshed, so you have to wait 24 hours for such down-stream changes.
 
