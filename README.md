@@ -2,11 +2,24 @@
 
 I've had to use PeopleSoft for part of my job for about 6 years now, and I've concluded that: PeopleSoft is a curse on humanity.  
 
-I'm not even sure what "PeopleSoft" (PS) is, but the curse for me is the web-based user interface to CRUDing on a backend database that runs my organization (a large university). I actually feel sorry for anyone who uses PS, and a lot of people do. You can spot on a screen it a mile away. The tight, small fonts and little boxes littered all over the screen. There's no responsive behavior, it's ugly, slow and unintuitive. There's no modern look to the elements (a la Bootstrap, etc.), boxes are too small for content they are to hold. See here for a box that is supposed to hold five letters, each a day of the work-week:
+I'm not even sure what "PeopleSoft" (PS) is, but the curse for me is the web-based user interface to CRUDing on a backend database that runs my organization (a large university). I actually feel sorry for anyone who uses PS, and a lot of people do. You can spot on a screen it a mile away. The tight, small fonts and little boxes littered all over the screen. There's no responsive behavior, and it's univiting, slow and unintuitive. There's no modern look to the elements (a la Bootstrap, etc.) and some boxes are too small for content they are to hold. See here for a box that is supposed to hold five letters, each a day of the work-week:
 
 ![Firefox web inspector](Images/000_day_pattern.png?raw=true)
 
  Changes are impossible to implement, because PS is typically used by large organizations requring many levels of committees for approving fixes. Some text-entry boxes require one to input data in a certain format, which could be eliminated with a form-data post-processing step on the server side of having the computer pad numbers with zeros and place a space between them.
+
+ Need to place a class in room 101 of building 180. How about 180-101? Nope.
+
+![Firefox web inspector](Images/005_180101_01.png?raw=true)
+
+ No again.
+
+![Firefox web inspector](Images/005_180101_02.png?raw=true)
+
+Ok, finally. Everyone has to type an extra space, and zero pad the room number. Everyone, everytime. Wow.
+
+![Firefox web inspector](Images/005_180101_03png?raw=true)
+
 
 Then there's the dreaded spinners and calls to the server with each focus change for a every entry element (=slow). 
 
