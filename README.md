@@ -83,7 +83,7 @@ The "next" link is similarly revealed here:
 
 ![Firefox web inspector](Images/003_next.png?raw=true)
 
-Thus, we can look for an element whose HTML ```id``` is ```pnnext``` and tell Seleniun to click on it via
+Thus, we can look for an element whose HTML ```id``` is ```pnnext``` (see the <a id="pnnext" ...> text?) and tell Seleniun to click on it via
 
 ```
 elem = driver.find_element_by_id("pnnext")
