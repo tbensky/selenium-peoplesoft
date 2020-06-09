@@ -16,7 +16,7 @@ There's also no "save and exit" button (it's always click to save, then another 
 
 No one should be forced to use such an awful interface, but a lot of us have to, since it's the backend that runs many large organizations. In my case, a major American university. I must use PS to tell the university about my local department's scheduling plans for upcoming terms (what classes, where, times of day, intructor names, etc.).  Once in a backend database, the data then goes to student registration pages (also some derivative of PS), payroll, tuition bills, etc. But of course it's refreshed, so you have to wait 24 hours for such down-stream changes.
 
-# My data flow plan
+# My new automated PS plan
 
 Internally, as I create my department's schedule, I end up with a CSV file containing all information about my department's upcoming course offerings. Something like this:
 
@@ -67,7 +67,7 @@ Casually browsing the code, you can see how the page ```https://google.com/ncr``
 
 Given lags and general random time delays on the web, you don't expect any server pages to be loaded instantly, so you tell the web-driver to always wait 10 seconds for result before timing out. You can do whatever you wish with the result of your search query. In this case, the HTML fragment ```h3>div``` which starts the "Show More" clickable tag on the search results page. Running this code with ```python example.py``` will result, via the final line ```print(first_result.get_attribute("textContent"))``` with the text ```Show More``` in your terminal. Congratulations: you just did an automated Google search and fished something out of the search results.
 
-## Automating: the hard part
+## Automating
 
 Let's go a step further, and have Selenium click on the "Next" link, to take us to the 2nd page of search results.  To do this, you'll have to fish through the search page's html code and try to figure out how the "Next" link works.
 
@@ -99,6 +99,8 @@ elem.click();
 ```
 
 This in a nutshell, is what you do with Selenium: direct it to load pages from the web, then look for things of interest to you in the text of web-pages read back into variables, then act on them. This means fill in text-boxes, click on links, etc.
+
+My plan is then to use Selenium to log me into my enterprise and navigate to the PS data entry area. From there, the contents of my CSV file will be read and typed into the proper places into the PS form.
 
 # Automating PeopleSoft
 
