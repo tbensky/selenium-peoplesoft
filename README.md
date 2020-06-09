@@ -29,7 +29,7 @@ There's also no "save and exit" button (it's always click to save, then another 
 
 No one should be forced to use such an awful interface, but a lot of us have to, since it's the backend that runs many large organizations. In my case, a major American university. I must use PS to tell the university about my local department's scheduling plans for upcoming terms (what classes, where, times of day, intructor names, etc.).  Once in a backend database, the data then goes to student registration pages (also some derivative of PS), payroll, tuition bills, etc. But of course it's refreshed, so you have to wait 24 hours for such down-stream changes.
 
-# My new automated PS plan
+# My data for PS
 
 Internally, as I create my department's schedule, I end up with a CSV file containing all information about my department's upcoming course offerings. Something like this:
 
