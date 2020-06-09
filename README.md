@@ -44,17 +44,28 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support.expected_conditions import presence_of_element_located
+from selenium.webdriver.support import expected_conditions as EC
 
 #This example requires Selenium WebDriver 3.13 or newer
-with webdriver.Firefox() as driver:
+with webdriver.Chrome('/Users/tom/Dropbox/Selenium/chromedriver') as driver:
     wait = WebDriverWait(driver, 10)
     driver.get("https://google.com/ncr")
     driver.find_element(By.NAME, "q").send_keys("cheese" + Keys.RETURN)
-    first_result = wait.until(presence_of_element_located(By.CSS_SELECTOR, "h3>div"))
+    #first_result = wait.until(presence_of_element_located(By.CSS_SELECTOR, "h3>div"))
+    first_result = WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.CSS_SELECTOR , "h3>div")))
     print(first_result.get_attribute("textContent"))
 ```
 
-Casually browsing the code, you can see how the page ```https://google.com/ncr``` is requested.  Google's search box is famously referred in the underlying HTML by the same of ```q```. You tell Selenium to find this elements in the HTML data on Google's main search page (```find_element```).  Once found, into this element you have Selenium type, via the ```send_keys``` function, the text ```cheese``` followed by return. In other words, you search for the word ```cheese.```
-Given lags and general random time delays on the web, you don't expect any server pages to be loaded instantly, so you tell the web-driver to always wait 10 seconds for result before timing out. You can do whatever you wish with the result of your search query. In this case, the HTML fragment ```h3>div``` which starts the "Show More" clickable tag on the search results page.
+Casually browsing the code, you can see how the page ```https://google.com/ncr``` is requested.  Google's search box is famously referred in the underlying HTML by the same of ```q```. You tell Selenium to find this element in the HTML data on Google's main search page (```find_element```).  Once found, into this element you have Selenium type, via the ```send_keys``` function, the text ```cheese``` followed by return. In other words, you are having Selenium search for the word ```cheese```--and you'll see it all happen in the automated Chrome view that the script will pop up on your screen.
+
+Given lags and general random time delays on the web, you don't expect any server pages to be loaded instantly, so you tell the web-driver to always wait 10 seconds for result before timing out. You can do whatever you wish with the result of your search query. In this case, the HTML fragment ```h3>div``` which starts the "Show More" clickable tag on the search results page. Running this code with ```python example.py``` will result, via the final line ```print(first_result.get_attribute("textContent"))``` with the text ```Show More``` in your terminal. Congratulations: you just did an automated Google search and fished something out of the search results.
+
+## Automating: the hard part
+
+Let's go a step further, and have Selenium click on the "Next" link, to take us to the 2nd page of search results.  To do this, you'll have to fish through the search page's html code and try to figure out how the "Next" link works.
+
+What I did is to download the "developer edition" of the Firefox browser. It has a "web inspector" which you can find here
+
+![Alt text](Images/001_inspector.png?raw=true)
 
 This in a nutshell, is what you do with Selenium: direct it to load pages from the web, then look for things of interest to you in the text of web-pages read back into variables, then act on them. This means fill in text-boxes, click on links, etc.
