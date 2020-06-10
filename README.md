@@ -61,7 +61,7 @@ At one point a while back, I said "enough."  A friend who does web-development o
 
 If you're curious, [the documentation](https://www.selenium.dev/documentation) for Selenium is excellent. This first Python example shows you the general plan:
 
-```
+```python
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -124,7 +124,7 @@ My plan is then to use Selenium to log me into my enterprise and navigate to the
 
 I cannot find a way of having Selenium "take over" a web browser session that I may have started by hand. So I have to log on to my enterprise first, but that's OK, it's good warm-up for things to come. So my code started like this:
 
-```
+```python
 from selenium import webdriver
 import selenium.webdriver.support.ui as ui
 from selenium.webdriver.common.keys import Keys
@@ -171,7 +171,7 @@ So I pull in my enterprise login page, then fill in my username and password usi
 will fill in a HTML text box uniquely identified with the ```id=``` tag. As above, I identified the tag using the Firefox Developer browser. Here is the
 function `fill_in_by_id`:
 
-```
+```python
 def fill_in_by_id(elem_id,text):
 	elem = wait_for_by_id(elem_id)
 	elem.clear()
@@ -186,7 +186,7 @@ using Selenium, get used to putting in Python's `time.sleep()` to slow your scri
 
 The `wait_for_by_id()` function is also custom, and looks like this:
 
-```
+```python
 def wait_for_by_id(elem_id):
 	print "waiting for id "+elem_id
 	try:
