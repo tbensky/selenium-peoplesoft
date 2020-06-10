@@ -273,7 +273,7 @@ To make that first click into the portal.  The next click in our portal is a lau
 click_on_by_xpath('/html/body/div/div/div[3]/div/div/div[5]/div[2]/div/div[2]/div/div[3]/div/div[1]/h2[1]/a')
 ```
 
-This second click essentially brings us to the main PS starting point, as it is connected to the university portal. You can kind of see what xpaths are: a lineage of stops to an element in a page.  In this case, look in the html, then to the body, then into some divs, etc. There are many tutorials and videos on xpaths. I found [these](https://www.youtube.com/user/naveenanimation20) to be helpful.
+This second click essentially brings us to the main PS starting point, as it is connected to the university portal. You can kind of see what xpaths are: a lineage of stops to an element in a page.  In this case, look in the html, then to the body, then into some divs, etc. There are many tutorials and videos on xpaths. I found the xpath tutorials by [this Youtuber](https://www.youtube.com/user/naveenanimation20) to be helpful.
 
 # Getting the CSV into PS
 
