@@ -37,10 +37,6 @@ Then there's the dreaded spinners and calls to the server with each focus change
 
 These annoying spinners will turn out to be very useful later on though (stay tuned).
 
-There's also no "save and exit" button (it's always click to save, then another click to exit. And, the "Are you sure you want to exit" warning doesn't have a "Save, then Exit" option).  
-
-No one should be forced to use such an awful interface, but a lot of us have to, since it's the backend that runs many large organizations. It must hamper productivity and the time spend fighting it (like 0 padding numbers) could be used doing something more productive.  
-
 In my case, I'm at major American university. I must use PS to tell the university about my local department's scheduling plans for upcoming terms (what classes, where, times of day, intructor names, etc.).  Once in a backend database, the data then goes to student registration pages (also some derivative of PS), payroll, tuition bills, etc. 
 
 # My data for PS
