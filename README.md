@@ -296,15 +296,141 @@ To begin Selenium takes me to a class entry form that looks like this
 
 ![Firefox web inspector](Images/007_ICTAB_0.png)
 
-Once again, I used the Firefox Developer to find xpaths or IDs for all boxes, dropdowns, and tabs I would be needing. This first tab for example has the id `ICTAB_0`. The "Class section" and "Associated class" boxes, for example, are in columns 2 and 3 of my CSV file.
+Once again, I used the Firefox Developer to find xpaths or IDs for all boxes, dropdowns, and tabs I would be needing. This first tab for example has the id `ICTAB_0`. The "Class section" (id=`CLASS_TBL_CLASS_SECTION$0"`) and "Associated class" (id=`CLASS_TBL_SSR_COMPONENT$0`) boxes, for example, are in columns 2 and 3 of my CSV file.
 
-The tab labeled "Meetings" (id=`ICTAB_1`) has historically been the killer one to deal with, as it contains the boxes for start, end, and days a class meets. Manually entering data into this form was so arduous and error prone.
+The tab labeled "Meetings" (id=`ICTAB_1`) has historically been the killer one to deal with, as it contains the boxes for start, end, and days a class meets. Manually entering data into this form was so arduous and error prone. All of the small details, no formatting help from the web-interface, and spinners after focus loss in each field.
 
 ![Firefox web inspector](Images/008_meetings.png)
 
+For entering a whole line from the CSV into this combinations of tabs, etc. a function called `csv_fill()` was written as:
+
+```python
+def csv_fill(file_name,class_prefix,class_number):
+	with open(file_name) as csv_file:
+	    the_file = csv.DictReader(csv_file, delimiter=',')
+	    for row in the_file:
+	    	if row['class'].lower() == (class_prefix + '-' + class_number).lower():
+	    		enter_class_info(row['section_number'],row['assoc_number'],row['type'],row['enroll'],row['print'],row['room'],row['days'],row['start'],row['end'],row['ecap'],row['emplid'],row['topic'],row['notenbr'])
+	    		time.sleep(1)
+	    		click_on_by_id('$ICField21$new$0$$0')
+	    		time.sleep(1)
+	    		wait_for_spinner()
+
+	time.sleep(2) #wait for new form to load.
+	delete_empty_class_form() #get rid of it
+	time.sleep(2)
+```
+
+It works like this. Suppose I want to autofill in all "physics" classes, that have course prefix of `PHYS`, and suppose I want to put in all of the `121` numbered courses (PHYS-121 is physics for life-science majors). I would make a call to `csv_fill('courses.csv','PHYS','121')`.
+
+As you can tell, this uses Python's CSV reader (DictReader) that is able to read in a CSV file and allow one to refer to a column by name, as given by column titles in the first row of the file.
+The `if` statement checks for lines in the CSV that are related to the class I wish to enter, then calls `enter_class_info()` if so. This function is the big one that does the data entry:
+
+```python
+def enter_class_info(section_number,assoc_number,type,enroll_type,print_yn,room,days,start,end,ecap,emplid,topic,notenbr):
+	time.sleep(1)
+	click_on_by_id("ICTAB_0")
+	time.sleep(1)
+	wait_for_spinner()
+
+	fill_in_by_id("CLASS_TBL_CLASS_SECTION$0",section_number.rjust(2,'0'))
+	wait_for_spinner()
+	
+	#PS Quirk..won't accept class type without a save now
+
+	click_save_button()
+
+	if topic:
+		fill_in_by_id("CLASS_TBL_CRS_TOPIC_ID$67$$0",topic)
+		wait_for_spinner()
 
 
+	fill_in_by_id("CLASS_TBL_SSR_COMPONENT$0",type)
+	wait_for_spinner()
+
+	if enroll_type == 'N':
+		select_dropdown_by_id("CLASS_TBL_CLASS_TYPE$0","Non-Enrollment Section")
+		wait_for_spinner()
+	
+	if print_yn == 'N':
+		click_on_by_id("CLASS_TBL_SCHEDULE_PRINT$0")
+		wait_for_spinner()
+
+	fill_in_by_id("CLASS_TBL_ASSOCIATED_CLASS$0",assoc_number.rjust(2,'0'))
+	wait_for_spinner();
+
+	click_on_by_id("ICTAB_1")
+	time.sleep(1)
+	wait_for_spinner()
+
+	if room:
+		fill_in_by_id("CLASS_MTG_PAT_FACILITY_ID$0",room)
+		wait_for_spinner()
+
+	if days:
+		fill_in_by_id("CLASS_MTG_PAT_STND_MTG_PAT$0",days)
+		wait_for_spinner()
+
+	if start:
+		fill_in_by_id("CLASS_MTG_PAT_MEETING_TIME_START$0",start)
+		wait_for_spinner()
+
+	if end:
+		fill_in_by_id("CLASS_MTG_PAT_MEETING_TIME_END$0",end)
+		wait_for_spinner()
+
+	if emplid:
+		fill_in_by_id("CLASS_INSTR_EMPLID$0",emplid)
+		wait_for_spinner()
+
+	select_dropdown_by_id("CLASS_INSTR_GRADE_RSTR_ACCESS$0","Approve")
+	wait_for_spinner()
 
 
+	click_on_by_id("ICTAB_2")
+	time.sleep(1)
+	wait_for_spinner()
 
+	fill_in_by_id("CLASS_TBL_ENRL_CAP$0",ecap)
+	wait_for_spinner()
+	fill_in_by_id("CLASS_TBL_ROOM_CAP_REQUEST$0",ecap)
+	wait_for_spinner()
+	fill_in_by_id("CLASS_TBL_WAIT_CAP$0","99")
+	wait_for_spinner()
+
+	if notenbr:
+		click_on_by_id("ICTAB_4")
+		time.sleep(1)
+		wait_for_spinner()
+
+		fill_in_by_id("CLASS_NOTES_CLASS_NOTE_NBR$0",notenbr)
+		wait_for_spinner()
+
+	click_on_by_id("ICTAB_0")
+	time.sleep(1)
+	wait_for_spinner()
+```
+
+You can follow along in the code, and see how I tell Selenium to click on tabs by ID, then fill in boxes, checkboxes or dropdowns, based on what's in the given tab. Notice the `time.sleep(1)` lines.  After a lot of "cutting and trying" these made things work. Don't be shy about putting a lot of these in your own script at least initially. The biggest problem with Selenium is when the script somehow gets out of sync with the web-interaction.
+
+## Back to the spinner: wait_for_spinner()
+
+As irritating as the spinner are to the human-based data-entry effort, they help enormously here to keep things on track. Why? We tell Seleniu to always simulate a "tab" key when entering data. This forces a call-home to the PS server, and a spinner comes up. After having a lot of trouble keeping the script in sync with the web-interactions, it dawned on me to always wait for the spinner to disappear before continuing. This meant PS was happy with the last data entry.
+
+It was rather comical to try to find the HTML ID for the spinner as it would come and go quickly. So you had to enter some faux data in the Firefox Developer, then hover quickly to the place on the screen where the spinner appeared, then watch the code section for its name (all within a second or two). I think I finally nailed it down, as shown here. There's both a spinner and a "Saved..." message PS puts out, so I wait for both of them to clear (or become "invisible") before proceeding to the next data entry field.
+
+```python
+def wait_for_spinner():
+	LONG_TIMEOUT = 30  # give enough time for loading to finish
+
+	time.sleep(1)
+	LOADING_ELEMENT_XPATH = "//*[@id='SAVED_win0']"
+	print "waiting for spinner"
+	WebDriverWait(browser, LONG_TIMEOUT).until(EC.invisibility_of_element_located((By.XPATH, LOADING_ELEMENT_XPATH)))
+
+	LOADING_ELEMENT_XPATH = "//*[@id='WAIT_win0']"
+	WebDriverWait(browser, LONG_TIMEOUT).until(EC.invisibility_of_element_located((By.XPATH, LOADING_ELEMENT_XPATH)))
+	print "spinner done"
+```
+This really helped, and allow for very long data entry runs to work without a hitch. Although I still have a feeling I missed something, I do see the script pause while spinners appear, only to continue when the spinner disappears again.
 
