@@ -1,6 +1,14 @@
+# tl;dr
+
+* This repository chronicles my work using Selenium to automate a large data entry job into PeopleSoft.
+* It takes a CSV file of the needed data and automates its entry into PeopleSoft.
+* Selenium is awesome, and it really works.
+* If you have some arduous data entry task, look into Selenium to automate it.
+* I hope this tutorial can help you automate such tasks.
+
 # Using PeopleSoft
 
-I've had to use PeopleSoft for part of my job (scheduling classes in a university physics department) for about 6 years now, and I've concluded that: PeopleSoft is a curse on humanity.  
+I've had to use PeopleSoft for part of my job (scheduling classes in a university physics department) for about 6 years now, and in this time have concluded that: PeopleSoft is a curse on humanity.  
 
 I'm not even sure what "PeopleSoft" (PS) is, but the curse for me is the web-based user interface to CRUDing on a backend database that runs my organization (a large university). I actually feel sorry for anyone who uses PS, and a lot of people do. You can spot on a screen it a mile away. The tight, small fonts and little boxes littered all over the screen. There's no responsive behavior, and it's univiting, slow and unintuitive. There's no modern look to the elements (a la Bootstrap, etc.) and some boxes are too small for content they are to hold. See here for a box that is supposed to hold five letters, each a day of the work-week:
 
@@ -231,7 +239,7 @@ def click_on_by_id(elem_id):
 
 You see a call again to `wait_for_by_id()`, which does a `.click` instead of a `send_keys()`. This is the only difference between doing a text fill and a click in Selenium.
 
-It turns out that a more robust way of finding elements in a page is using its "xpath." These are step by step paths into the DOM object to unambiguously point to an HTML element in a document.  We defaulted to using xpaths throughout this work, as they seem more reliable in finding elements, particularly in the vast PS jungle.  (PS jungle: At some point, we even started feeling sorry for browsers that are used in interacting with PS.) Xpaths, however are less robust in the long term, as any code change on the end of PS will break its use. (But I don't think PS changes very much! It is what it is.)
+It turns out that a more robust way of finding elements in a page is using its "xpath." These are step by step paths into the DOM object to unambiguously point to an HTML element in a document.  We defaulted to using xpaths throughout this work, as they seem more reliable in finding elements, particularly in the vast PS jungle.  (PS jungle: At some point, we even started feeling sorry for browsers used to interact with PS.) Xpaths, however are less robust in the long term, as any code change on the end of PS will break its use. (But I don't think PS changes very much!)
 
 The Firefox Developer will show you such xpaths. Just right click on an element HTML down in the code box, and you can copy out the xpath to an element. 
 
@@ -282,7 +290,19 @@ Now for the big moment. Some basics of Selenium are covered, and now it's time t
 
 ```class,section_number,assoc_number,type,room,days,start,end,print,ecap,enroll,last,first,emplid,topic,notenbr```
 
-In terms of scheduling classes, these are fields that need to go into PS via the dreaded "class entry" form on PS.  Configuring a class has many boxes, all needing to be filled in with something from one of these columns. The fields in PS are also spread across multiple tabs. Here we go.
+In terms of scheduling classes, these are fields that need to go into various boxes and dropdowns in the dreaded "class entry" form in PS.  Configuring a class has many boxes, all needing to be filled in with something from one of these columns. The fields in PS are also spread across multiple tabs. Here we go.
+
+To begin Selenium takes me to a class entry form that looks like this
+
+![Firefox web inspector](Images/007_ictab_0.png)
+
+Once again, I used the Firefox Developer to find xpaths or IDs for all boxes, dropdowns, and tabs I would be needing. This first tab for example has the id `ICTAB_0`. The "Class section" and "Associated class" boxes, for example, are in columns 2 and 3 of my CSV file.
+
+The tab labeled "Meetings" (id=`ICTAB_1`) has historically been the killer one to deal with, as it contains the boxes for start, end, and days a class meets. Manually entering data into this form was so arduous and error prone.
+
+![Firefox web inspector](Images/008_meetings.png)
+
+
 
 
 
