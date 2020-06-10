@@ -232,7 +232,13 @@ You see a call again to `wait_for_by_id()`, which does a `.click` instead of a `
 It turns out that a more robust way of finding elements in a page is using its "xpath." These are step by step paths into the DOM object to unambiguously point to an HTML element in a document.  We defaulted to using xpaths throughout this work, as they seem more reliable in finding elements, particularly in the vast PS jungle.  At some point, we even started feeling
 sorry for browsers that are used in interacting with PS.
 
-The Firefox Developer will show you such xpaths. Just right click on an element HTML down in the code box, and you can copy out the xpath to an element. In this case, it came out to be
+The Firefox Developer will show you such xpaths. Just right click on an element HTML down in the code box, and you can copy out the xpath to an element. 
+
+
+![Firefox web inspector](Images/006_xpath.png?raw=true)
+
+
+In this case, it came out to be
 `//*[@id="tabLink_u21l1s5"]'`. So, yes, we have this pair, as xpaths are supported by Selenium, which looks like this:
 
 ```python
