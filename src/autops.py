@@ -412,16 +412,6 @@ classes_in_ps = []
 # 		put_in_new_class(term_code,class_prefix,class_num,the_file)
 # 		time.sleep(2)
 
-#----best plan: remove the old, and put in the new
-#----avoids deleting everything at once
-#remove_and_add(term_code,'PHYS','462',the_file)
-
-#######note: make sure studio lectures get a "S" after their room numbers....
-#############phys-125: no print, instructor consent
-#############GEOL-206 (lec), add Note Nbr: 0031 and Note: "Time/location for first class meeting only."
-#############GEOL-205 (lab), add Note Nbr: 1391 and Note: "Students will receive specific information about the meeting dates, location, and times for the remainder of the quarter during the first class meeting."
-#############PSC-101/ASTR-101, Note Nbr: 0744, Note: "Some seats are reserved for Liberal Studies majors during the registration rotations. Any remaining seats will be made available to all students on the first day of open enrollment."
-#############PHYS-125, Department Consent and note 0007 added, note: Contact department for permission to enroll.
 #one off
 #put_in_new_class(term_code,'GEOL','415',the_file)
 
