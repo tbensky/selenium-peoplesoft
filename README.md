@@ -89,11 +89,11 @@ Let's go a step further, and have Selenium click on the "Next" link, to take us 
 
 To help, I downloaded the "developer edition" of the Firefox browser. It has a "web inspector" which you can find here:
 
-<img src=https://github.com/tbensky/selenium-peoplesoft/blob/master/Images/001_inspector.png>
+<img src=https://github.com/tbensky/selenium-peoplesoft/blob/master/Images/001_inspector.png height=200>
 
 When this is active the browser looks like this
 
-![Firefox web inspector](Images/002_q_box.png?raw=true)
+<img src=https://github.com/tbensky/selenium-peoplesoft/blob/master/Images/002_q_box.png height=200>
 
 Where you can now peek down in the HTML code of Google's home page to see what part of it is generating the search box. In this case, it's
 
