@@ -277,11 +277,11 @@ This second click essentially brings us to the main PS starting point, as it is 
 
 # Getting the CSV into PS
 
-Now for the big moment. Some basics of Selenium are covered, and now it's time tackle getting my CSV auto-typed into PS. The CSV file above has a header describing each column, that i
+Now for the big moment. Some basics of Selenium are covered, and now it's time tackle getting my CSV auto-typed into PS. The CSV file above has a header describing each column, that looks like this:
 
 ```class,section_number,assoc_number,type,room,days,start,end,print,ecap,enroll,last,first,emplid,topic,notenbr```
 
-In terms of scheduling classes, these are fields that need to go into PS, and in the dreaded "class entry" form on PS, each class has a box needing to be filled in with something from one of these columns. Field are also spread across multiple tabs. Here we go.
+In terms of scheduling classes, these are fields that need to go into PS via the dreaded "class entry" form on PS.  Configuring a class has many boxes, all needing to be filled in with something from one of these columns. Fields in PS are also spread across multiple tabs. Here we go.
 
 
 
