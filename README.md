@@ -415,9 +415,9 @@ You can follow along in the code, and see how I tell Selenium to click on tabs b
 
 ## Back to the spinner: wait_for_spinner()
 
-As irritating as the spinners are to the human-based data-entry effort, they help enormously here to keep things on track. Why? We tell Seleniu to always simulate a "tab" key when entering data. This forces a call-home to the PS server, and a spinner comes up. After having a lot of trouble keeping the script in sync with the web-interactions, it dawned on me to always wait for the spinner to disappear before continuing. This meant PS was happy with the last data entry.
+As irritating as the spinners are to the human-based data-entry effort, they help enormously here to keep things on track in this automated mode. Why? I always tell Selenium to simulate a "tab" key after entering data. This forces PS's need to "call-home" to the PS server, and a spinner comes up.  After having a lot of trouble keeping the script in sync with the web-interactions, it dawned on me to always wait for the spinner to disappear before continuing. This meant PS was happy with the last data entry.
 
-It was rather comical to try to find the HTML ID for the spinner as it would come and go quickly. So you had to enter some faux data in the Firefox Developer, then hover quickly to the place on the screen where the spinner appeared, then watch the code section for its name (all within a second or two). I think I finally nailed it down, as shown here. There's both a spinner and a "Saved..." message PS puts out, so I wait for both of them to clear (or become "invisible") before proceeding to the next data entry field.
+It was rather comical to try to find the HTML ID for the spinner though, as it would come and go quickly. I had to enter some faux data in the Firefox Developer, then hover quickly to the place on the screen where the spinner appeared, then watch the code section for its name (all within a second or two). I think I finally nailed it down, as shown here. There's both a spinner and a "Saved..." message PS puts out, so I wait for both of them to clear (or become "invisible") before proceeding to the next data entry field.
 
 ```python
 def wait_for_spinner():
