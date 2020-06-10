@@ -123,7 +123,7 @@ My plan is then to use Selenium to log me into my enterprise and navigate to the
 
 ## Log-in first
 
-I cannot find a way of having Selenium "take over" a web browser session that I may have started by hand. So I have to log on to my enterprise first, but that's OK, it's good warm-up for things to come. So my code started like this:
+I don't think there's a way of having Selenium "take over" a web browser session that I may have started by hand. So I have to log on to my enterprise first, but that's OK, it's good warm-up for things to come. So my code started like this:
 
 ```python
 from selenium import webdriver
@@ -165,8 +165,7 @@ Required imports at the top, then the code begins.  I didn't want to hardcode by
 
 ```python autops username password```
 
-Next I start a timer and open the webdriver for Chrome (Safari, Firefox, etc. drivers are also available). There will also be a log of prints to stdout, to help me
-keep track of what's going on.
+(I know, I know, passwords on the command line.)  Next I start a timer and open the webdriver for Chrome (Safari, Firefox, etc. drivers are also available). There will also be a lot of prints to stdout, to help me keep track of what's going on.
 
 So I pull in my enterprise login page, then fill in my username and password using a function called `fill_in_by_id.` This is a function I wrote that
 will fill in a HTML text box uniquely identified with the ```id=``` tag. As above, I identified the tag using the Firefox Developer browser. Here is the
@@ -200,9 +199,9 @@ def wait_for_by_id(elem_id):
 ```
 
 As you can see, we tell the web-driver to wait 10 seconds until the webpage we're loading detects the HTML element we seek becoming visible.  A bit of a failsafe in also
-included using the `try/except` construct. I found PS to be a strange and wildly erratic system in its responses. This version of `wait_for_by_id()` seem to work best and the `except` allows u to recover/continue a lengths input run in the case of some PS spasm.
+included using the `try/except` construct. I found PS to be a strange and wildly erratic system in the timing of its responses. This version of `wait_for_by_id()` seem to work best and the `except` allows us to recover/continue a lengthy input run in the case of some PS spasm.
 
-You should be able to use this plan to log in to your enterprise, as needed. Don't forget to find your "login" button. Mine is clicked using
+You should be able to use this plan to log in to your enterprise, as needed. Don't forget to find your "login" button you Selenium can "click it" to log in. Mine is clicked using:
 
 ```python
 elem = browser.find_element_by_name("_eventId_proceed")
@@ -213,13 +212,15 @@ My login button has a HTML name of `"_eventId_proceed`. The Selenium function `f
 
 # Navigating
 
-Once in, you likely need to navigate to your data entry area. For me, this involves a few clicks through my main univeristy portal (portal=word from the 90s). First, I needed to click on a link with the HTML id of `tabLink_u21l1s5`.  Thus, a line like
+Once in, you likely need to navigate to your data entry area. For me, this involves a few clicks through my main univeristy portal (portal=word from the 90s). First, I needed to click on a link with the HTML id of `tabLink_u21l1s5`.  Thus, a line like this:
 
 ```python
 click_on_by_id("tabLink_u21l1s5")
 ```
 
-by this was unreliable. In otherwords, sometimes Selenium would just sit, apparently unable to find the link with this id.  You may run into trouble like this, likely because elements are in differenet iframes. Here is `click_on_by_id()`:
+I found this to be unreliable at least in dealing with PS. In other words, sometimes Selenium would just sit, apparently unable to find the link with this id.  You may run into trouble like this, likely because elements are in differenet iframes. (I never quite understood how Selenium handles iframes. I think it isolates HTML entities into each, meaning you can't directly "see" elements in a iframe unless you explicitly change into it.)
+
+Here is `click_on_by_id()`:
 
 ```python
 def click_on_by_id(elem_id):
@@ -230,8 +231,7 @@ def click_on_by_id(elem_id):
 
 You see a call again to `wait_for_by_id()`, which does a `.click` instead of a `send_keys()`. This is the only difference between doing a text fill and a click in Selenium.
 
-It turns out that a more robust way of finding elements in a page is using its "xpath." These are step by step paths into the DOM object to unambiguously point to an HTML element in a document.  We defaulted to using xpaths throughout this work, as they seem more reliable in finding elements, particularly in the vast PS jungle.  At some point, we even started feeling
-sorry for browsers that are used in interacting with PS.
+It turns out that a more robust way of finding elements in a page is using its "xpath." These are step by step paths into the DOM object to unambiguously point to an HTML element in a document.  We defaulted to using xpaths throughout this work, as they seem more reliable in finding elements, particularly in the vast PS jungle.  (PS jungle: At some point, we even started feeling sorry for browsers that are used in interacting with PS.) Xpaths, however are less robust in the long term, as any code change on the end of PS will break its use. (But I don't think PS changes very much! It is what it is.)
 
 The Firefox Developer will show you such xpaths. Just right click on an element HTML down in the code box, and you can copy out the xpath to an element. 
 
