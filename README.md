@@ -120,7 +120,7 @@ My plan is then to use Selenium to log me into my enterprise and navigate to the
 # Automating PeopleSoft
 
 
-## Log in first
+## Log-in first
 
 I cannot find a way of having Selenium "take over" a web browser session that I may have started by hand. So I have to log on to my enterprise first, but that's OK, it's good warm-up for things to come. So my code started like this:
 
@@ -149,7 +149,7 @@ start = time.time()
 browser = webdriver.Chrome('/Users/tom/Dropbox/Selenium/chromedriver')
 #browser = webdriver.Safari()
 #browser.maximize_window()
-browser.get('https://my.enterprises.web.address')
+browser.get('https://my.enterprise.web.address')
 handle0 = browser.current_window_handle
 print handle0
 
@@ -160,7 +160,7 @@ time.sleep(1)
 
 ```
 
-Required imports at the top, them my code begins.  I didn't want to hardcode by username and password, so I pass those in as command line parameters, as in 
+Required imports at the top, then the code begins.  I didn't want to hardcode by username and password, so I pass those in as command line parameters, as in 
 
 ```python autops username password```
 
@@ -181,8 +181,7 @@ def fill_in_by_id(elem_id,text):
 ```
 
 First, we wait for the element "by id" to appear in the page, clear it (literally, remove any text that may be in it), then send out the needed string (as if typed). It was
-important in PS to simulate a tab key press. This forces the text field to reconcile with the server (it brings up a spinner), then pause for 0.5 seconds. Yes, when
-using Selenium, get used to putting in Python's `time.sleep()` to slow your script down, so it won't race past any relatively slower server you may be talking to.
+important in PS to simulate a tab key press at the end of all such input. It took a while to figure out that this always forces the text field to reconcile with the server (it brings up a spinner). We then pause for 0.5 seconds. Yes, when using Selenium, get used to putting in Python's `time.sleep()` to slow your script down, so it won't race past any relatively slower server you may be talking to.
 
 The `wait_for_by_id()` function is also custom, and looks like this:
 
@@ -200,4 +199,72 @@ def wait_for_by_id(elem_id):
 ```
 
 As you can see, we tell the web-driver to wait 10 seconds until the webpage we're loading detects the HTML element we seek becoming visible.  A bit of a failsafe in also
-included using the `try/except` construct. I found PS to be a strange and wildly erratic system in its responses. This version of `wait_for_by_id()` seem to work best.
+included using the `try/except` construct. I found PS to be a strange and wildly erratic system in its responses. This version of `wait_for_by_id()` seem to work best and the `except` allows u to recover/continue a lengths input run in the case of some PS spasm.
+
+You should be able to use this plan to log in to your enterprise, as needed. Don't forget to find your "login" button. Mine is clicked using
+
+```python
+elem = browser.find_element_by_name("_eventId_proceed")
+elem.click();
+````
+
+My login button has a HTML name of `"_eventId_proceed`. The Selenium function `find_element_by_name()` will find this button, then the `.click()` will simulate the click.
+
+# Navigating
+
+Once in, you likely need to navigate to your data entry area. For me, this involves a few clicks through my main univeristy portal (portal=word from the 90s). First, I needed to click on a link with the HTML id of `tabLink_u21l1s5`.  Thus, a line like
+
+```python
+click_on_by_id("tabLink_u21l1s5")
+```
+
+by this was unreliable. In otherwords, sometimes Selenium would just sit, apparently unable to find the link with this id.  You may run into trouble like this, likely because elements are in differenet iframes. Here is `click_on_by_id()`:
+
+```python
+def click_on_by_id(elem_id):
+	elem = wait_for_by_id(elem_id)
+	if elem != False:
+		elem.click()
+```
+
+You see a call again to `wait_for_by_id()`, which does a `.click` instead of a `send_keys()`. This is the only difference between doing a text fill and a click in Selenium.
+
+It turns out that a more robust way of finding elements in a page is using its "xpath." These are step by step paths into the DOM object to unambiguously point to an HTML element in a document.  We defaulted to using xpaths throughout this work, as they seem more reliable in finding elements, particularly in the vast PS jungle.  At some point, we even started feeling
+sorry for browsers that are used in interacting with PS.
+
+The Firefox Developer will show you such xpaths. Just right click on an element HTML down in the code box, and you can copy out the xpath to an element. In this case, it came out to be
+`//*[@id="tabLink_u21l1s5"]'`. So, yes, we have this pair, as xpaths are supported by Selenium, which looks like this:
+
+```python
+def wait_for_by_xpath(xpath):
+	print "waiting for xpath "+xpath
+	try:
+		elem = WebDriverWait(browser, 10).until(EC.visibility_of_element_located((By.XPATH, xpath)))
+	except:
+		print "could not find "+xpath+". Please click on it."
+		x=raw_input("Press [Return] when done...")
+		elem = False
+
+	return(elem)
+
+
+	def click_on_by_xpath(xpath):
+	elem = wait_for_by_xpath(xpath)
+	if elem != False:
+		elem.click()
+```
+
+
+So, the next call out is a line like this
+
+```python
+click_on_by_xpath('//*[@id="tabLink_u21l1s5"]')
+```
+
+To make that first click into the portal.  The next click in our portal is a launch into PS, having this xpath `/html/body/div/div/div[3]/div/div/div[5]/div[2]/div/div[2]/div/div[3]/div/div[1]/h2[1]/a')` so we do this:
+
+```python
+click_on_by_xpath('/html/body/div/div/div[3]/div/div/div[5]/div[2]/div/div[2]/div/div[3]/div/div[1]/h2[1]/a')
+```
+
+This second click essentially brings us to the main PS starting point, as it is connected to the university portal. You can kind of see what xpaths are: a lineage of stops to an element in a page.  In this case, look in the html, then to the body, then into some divs, etc.
