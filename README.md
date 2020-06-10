@@ -1,10 +1,10 @@
 # tl;dr
 
-* This repository chronicles my work using Selenium to automate a large data entry job into PeopleSoft.
+* This repository chronicles my work using Selenium to automate large data entry jobs into PeopleSoft.
 * It takes a CSV file of the needed data and automates its entry into PeopleSoft.
 * Selenium is awesome, and it really works.
-* If you have some arduous data entry task, I encourahe you to look into Selenium to automate it.
-* I hope this tutorial can help you get started in automating such tasks.
+* If you have some arduous data entry task, I encourage you to look into Selenium to automate it.
+* Hopefully this tutorial can help you get started.
 
 # Using PeopleSoft
 
