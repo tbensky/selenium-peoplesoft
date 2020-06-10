@@ -239,7 +239,7 @@ The Firefox Developer will show you such xpaths. Just right click on an element 
 
 
 In this case, it came out to be
-`//*[@id="tabLink_u21l1s5"]'`. So, yes, we have this pair, as xpaths are supported by Selenium, which looks like this:
+`//*[@id="tabLink_u21l1s5"]'`. So, yes, we have this pair of functions coded, as xpaths are supported by Selenium, which looks like this:
 
 ```python
 def wait_for_by_xpath(xpath):
@@ -254,7 +254,7 @@ def wait_for_by_xpath(xpath):
 	return(elem)
 
 
-	def click_on_by_xpath(xpath):
+def click_on_by_xpath(xpath):
 	elem = wait_for_by_xpath(xpath)
 	if elem != False:
 		elem.click()
