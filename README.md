@@ -89,7 +89,7 @@ Let's go a step further, and have Selenium click on the "Next" link, to take us 
 
 To help, I downloaded the "developer edition" of the Firefox browser. It has a "web inspector" which you can find here:
 
-![Firefox web inspector](Images/001_inspector.png?raw=true)
+<img src=https://github.com/tbensky/selenium-peoplesoft/blob/master/Images/001_inspector.png>
 
 When this is active the browser looks like this
 
