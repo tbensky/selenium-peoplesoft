@@ -439,7 +439,7 @@ This really helped, and allows for very long data entry runs to work without a h
 
 It works and save me a ton of time, but even more, energy, and the foot-dragging associated with this job, knowing "dealing with PS" was coming.  Here you can see it entering information for a class called PHYS-111.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/dH0tezaQcVQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[![Watch it work](https://img.youtube.com/vi/dH0tezaQcVQ/0.jpg)](https://www.youtube.com/watch?v=dH0tezaQcVQ)
 
 
 My full code for `autops.py` is in the `src` folder.  I generally approch data entry from an as needed basis, so my script has a lot of commented out blocks used for this and that. But all of my tasks are based on the core functions presented above.
