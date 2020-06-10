@@ -411,11 +411,11 @@ def enter_class_info(section_number,assoc_number,type,enroll_type,print_yn,room,
 	wait_for_spinner()
 ```
 
-You can follow along in the code, and see how I tell Selenium to click on tabs by ID, then fill in boxes, checkboxes or dropdowns, based on what's in the given tab. Notice the `time.sleep(1)` lines.  After a lot of "cutting and trying" these made things work. Don't be shy about putting a lot of these in your own script at least initially. The biggest problem with Selenium is when the script somehow gets out of sync with the web-interaction.
+You can follow along in the code, and see how I tell Selenium to click on tabs by ID, then fill in boxes, checkboxes or dropdowns, based on what's in the given tab. Notice the `time.sleep(1)` lines.  After a lot of "cutting and trying" these made things work. Don't be shy about putting a lot of these in your own script at least initially. The biggest problem with Selenium is when the script somehow gets out of sync with the web-interaction. The ``if`` statements save navigation time if fields entry is empty.
 
 ## Back to the spinner: wait_for_spinner()
 
-As irritating as the spinner are to the human-based data-entry effort, they help enormously here to keep things on track. Why? We tell Seleniu to always simulate a "tab" key when entering data. This forces a call-home to the PS server, and a spinner comes up. After having a lot of trouble keeping the script in sync with the web-interactions, it dawned on me to always wait for the spinner to disappear before continuing. This meant PS was happy with the last data entry.
+As irritating as the spinners are to the human-based data-entry effort, they help enormously here to keep things on track. Why? We tell Seleniu to always simulate a "tab" key when entering data. This forces a call-home to the PS server, and a spinner comes up. After having a lot of trouble keeping the script in sync with the web-interactions, it dawned on me to always wait for the spinner to disappear before continuing. This meant PS was happy with the last data entry.
 
 It was rather comical to try to find the HTML ID for the spinner as it would come and go quickly. So you had to enter some faux data in the Firefox Developer, then hover quickly to the place on the screen where the spinner appeared, then watch the code section for its name (all within a second or two). I think I finally nailed it down, as shown here. There's both a spinner and a "Saved..." message PS puts out, so I wait for both of them to clear (or become "invisible") before proceeding to the next data entry field.
 
