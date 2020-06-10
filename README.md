@@ -20,6 +20,7 @@ I'm not even sure what "PeopleSoft" (PS) is, but the curse for me is the web-bas
 <img src=https://github.com/tbensky/selenium-peoplesoft/blob/master/Images/005_180101_01.png height=200>
 
 Nope. How about 180-0101?
+
 <img src=https://github.com/tbensky/selenium-peoplesoft/blob/master/Images/005_180101_02.png height=200>>
 
 No again. How about 180 -0101?
