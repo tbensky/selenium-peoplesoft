@@ -294,7 +294,7 @@ In terms of scheduling classes, these are fields that need to go into various bo
 
 To begin Selenium takes me to a class entry form that looks like this
 
-![Firefox web inspector](Images/007_ictab_0.png)
+![Firefox web inspector](Images/007_ICTAB_0.png)
 
 Once again, I used the Firefox Developer to find xpaths or IDs for all boxes, dropdowns, and tabs I would be needing. This first tab for example has the id `ICTAB_0`. The "Class section" and "Associated class" boxes, for example, are in columns 2 and 3 of my CSV file.
 
