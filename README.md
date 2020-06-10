@@ -93,7 +93,7 @@ To help, I downloaded the "developer edition" of the Firefox browser. It has a "
 
 When this is active the browser looks like this
 
-<img src=https://github.com/tbensky/selenium-peoplesoft/blob/master/Images/002_q_box.png width=200>
+<img src=https://github.com/tbensky/selenium-peoplesoft/blob/master/Images/002_q_box.png>
 
 Where you can now peek down in the HTML code of Google's home page to see what part of it is generating the search box. In this case, it's
 
