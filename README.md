@@ -437,7 +437,7 @@ This really helped, and allows for very long data entry runs to work without a h
 
 # Closing
 
-It works and save me a ton of time, but even more, energy, and the foot-dragging associated with this job, knowing "dealing with PS" was coming.  Here you can see it entering information for a class called PHYS-111.
+It works and save me a ton of time, but even more, energy, and the foot-dragging associated with this job, knowing "dealing with PS" was coming.  Here you can see it entering information for a class called PHYS-111 (watch the fast 'typing speed' and the spinners in the upper right corner).
 
 [![Watch it work](https://img.youtube.com/vi/dH0tezaQcVQ/0.jpg)](https://www.youtube.com/watch?v=dH0tezaQcVQ)
 
