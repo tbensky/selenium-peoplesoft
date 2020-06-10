@@ -96,7 +96,7 @@ When this is active the browser looks like this
 
 Where you can now peek down in the HTML code of Google's home page to see what part of it is generating the search box. In this case, it's
 
-```
+```html
 <input class="gLFyf gsfi" maxlength="2048" name="q" type="text" jsaction="paste:puy29d" aria-autocomplete="both" aria-haspopup="false" autocapitalize="off" autocomplete="off" autocorrect="off" autofocus="" role="combobox" spellcheck="false" title="Search" value="" aria-label="Search" data-ved="0ahUKEwjywISjl_XpAhV0HjQIHVhCC1oQ39UDCAY">
 ```
 
@@ -108,7 +108,7 @@ The "next" link is similarly revealed here:
 
 Thus, we can look for an element whose HTML ```id``` is ```pnnext``` (see the ```<a id="pnnext" ...>``` text?) and tell Seleniun to click on it via
 
-```
+```python
 elem = driver.find_element_by_id("pnnext")
 elem.click();
 ```
