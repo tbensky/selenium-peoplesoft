@@ -298,7 +298,7 @@ To begin Selenium takes me to a class entry form that looks like this
 
 Once again, I used the Firefox Developer to find xpaths or IDs for all boxes, dropdowns, and tabs I would be needing. This first tab for example has the id `ICTAB_0`. The "Class section" (id=`CLASS_TBL_CLASS_SECTION$0"`) and "Associated class" (id=`CLASS_TBL_SSR_COMPONENT$0`) boxes, for example, are in columns 2 and 3 of my CSV file.
 
-The tab labeled "Meetings" (id=`ICTAB_1`) has historically been the killer one to deal with, as it contains the boxes for start, end, and days a class meets. Manually entering data into this form was so arduous and error prone. All of the small details, no formatting help from the web-interface, and spinners after focus loss in each field.
+The tab labeled "Meetings" (id=`ICTAB_1`) has historically been the killer one to deal with, as it contains the boxes for start, end, and days a class meets. Manually entering data into this form was so arduous and error prone. All of the small details, no formatting help from the web-interface, and spinners after focus loss in each field were such an energy suck.
 
 ![Firefox web inspector](Images/008_meetings.png)
 
