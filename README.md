@@ -444,9 +444,7 @@ It works and save me a ton of time, but even more, energy, and the foot-dragging
 
 My full code for `autops.py` is in the `src` folder.  I generally approch data entry from an as needed basis, so my script has a lot of commented out blocks used for this and that. But all of my tasks are based on the core functions presented above.
 
-When doing manual entry, I would always have to do a "diff" between by records and PS to be sure I was in sync. This always took 24 hours, since after any data entry, I would have to wait a day for my university to "refresh" local tables from PS (PS does not have any data export functionality). I would pull this local table, and diff it with my csv file, then go in and fix errors until the diff result was empty.  This would usually take a whole week.
-
-There are no errors now, since what goes into PS comes right from the CSV.
+When doing manual entry, I would always have to do a "diff" between by records and PS to be sure I was in sync. This always took 24 hours, since after any data entry, I would have to wait a day for my university to "refresh" local tables from PS (PS does not have any data export functionality). I would pull this local table, and diff it with my csv file, then go in and fix errors until the diff result was empty.  This would usually take a whole week (10 min of diffing, them wait 24 hour to diff again).  There are no errors now, since what goes into PS comes right from the CSV.
 
 Also, in terms of staying synced, when I make changes, I just tell Selenium to delete what in PS and re-enter everything. It' just a computer talking to a computer, so it's no sweat for me. I had a grand plan of using Selenium to probe differences, but that got too messy.
 

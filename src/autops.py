@@ -362,14 +362,14 @@ unique_course_nums = csv_get_course_numbers(the_file,class_prefix)
 print unique_course_nums
 
 start = time.time()
-browser = webdriver.Chrome('/Users/tom/Dropbox/Selenium/chromedriver')
+browser = webdriver.Chrome('/path/to/chrome-driver')
 #browser = webdriver.Safari()
 #browser.maximize_window()
-browser.get('https://my.calpoly.edu')
+browser.get('https://your-enterprise-address')
 handle0 = browser.current_window_handle
 print handle0
 
-fill_in_by_id('username',username + '@calpoly.edu')
+fill_in_by_id('username',username)
 time.sleep(1)
 fill_in_by_id("password",password)
 time.sleep(1)
