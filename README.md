@@ -1,4 +1,4 @@
-# tl;dr
+### tl;dr
 
 * This repository chronicles my work using Selenium to automate large data entry jobs into PeopleSoft.
 * It takes a CSV file of the needed data and automates its entry into PeopleSoft.
