@@ -11,15 +11,15 @@ I'm not even sure what "PeopleSoft" (PS) is, but the curse for me is the web-bas
 
  Need to place a class in room 101 of building 180. How about 180-101? Nope.
 
-<img src=https://github.com/tbensky/selenium-peoplesoft/blob/master/Images/005_180101_01.png>
+<img src=https://github.com/tbensky/selenium-peoplesoft/blob/master/Images/005_180101_01.png height=100>>
 
  No again.
 
-<img src=https://github.com/tbensky/selenium-peoplesoft/blob/master/Images/005_180101_02.png>
+<img src=https://github.com/tbensky/selenium-peoplesoft/blob/master/Images/005_180101_02.png height=100>>
 
 Ok, finally. Everyone has to type an extra space, and zero pad the room number. Everyone, everytime. Wow.
 
-<img src=https://github.com/tbensky/selenium-peoplesoft/blob/master/Images/005_180101_03.png>
+<img src=https://github.com/tbensky/selenium-peoplesoft/blob/master/Images/005_180101_03.png height=100>>
 
 
 Then there's the dreaded spinners and calls to the server with each focus change for a every entry element (=slow). 
