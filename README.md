@@ -15,13 +15,11 @@ I'm not even sure what "PeopleSoft" (PS) is, but the curse for me is the web-bas
 <img src=https://github.com/tbensky/selenium-peoplesoft/blob/master/Images/000_day_pattern.png height=100>
 
 
- Changes are impossible to implement, because PS is typically used by large organizations requring many levels of committees for approving fixes. Some text-entry boxes require one to input data in a certain format, which could be eliminated with a form-data post-processing step on the server side of having the computer pad numbers with zeros and place a space between them.
-
- Need to place a class in room 101 of building 180. How about 180-101? Nope.
+ Changes are impossible to implement, because PS is typically used by large organizations requring many levels of committees for approving fixes. Some text-entry boxes require one to input data in a certain format, which could be eliminated with a form-data post-processing step on the server side of having the computer pad numbers with zeros and place a space between them. An as example, suppose I need to place a class in room 101 of building 180. How about typing in 180-101? Nope.
 
 <img src=https://github.com/tbensky/selenium-peoplesoft/blob/master/Images/005_180101_01.png height=200>>
 
- No again.
+No again.
 
 <img src=https://github.com/tbensky/selenium-peoplesoft/blob/master/Images/005_180101_02.png height=200>>
 
