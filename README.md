@@ -1,21 +1,27 @@
 ### tl;dr
 
-* This repository summarizes a way of using Selenium to automate a large data entry job into PeopleSoft.
+* Here is a summary of using Selenium to automate a large data entry job into PeopleSoft.
 * It takes a CSV file of the needed data and automates its entry into PeopleSoft.
-* Selenium is awesome, and it really works.
+* Selenium is awesome, and it really works!
 * If you have some arduous data entry task, I encourage you to look into Selenium to automate it.
 * Hopefully this tutorial can help you get started.
 
 # Using PeopleSoft
 
-I've had to use PeopleSoft for part of my job (scheduling classes in a university physics department) for about 6 years now, and in this time have concluded that: PeopleSoft is a curse on humanity.  
+I've had to use PeopleSoft for part of my job (scheduling classes in a university physics department) for about 6 years now, and in this time have concluded that: *PeopleSoft is a curse on humanity*.  
 
-I'm not even sure what "PeopleSoft" (PS) is, but the curse for me is the web-based user interface to CRUDing on a backend database that runs my organization (a large university). I actually feel sorry for anyone who uses PS, and a lot of people do. You can spot on a screen it a mile away. The tight, small fonts and little boxes littered all over the screen. There's no responsive behavior, and it's univiting, slow and unintuitive. There's no modern look to the elements (a la Bootstrap, etc.) and some boxes are too small for content they are to hold. Here's for a box for example, that is supposed to hold five letters, one for each a day of the work-week:
+I'm not even sure what "PeopleSoft" (PS) actually is, but the curse for me is the web-based user interface to CRUDing on a backend database that runs my organization (a large university). I actually feel sorry for anyone who uses PS, and a lot of people do. You can spot on a screen it a mile away. The tight, small fonts and little boxes littered all over the screen. There's no responsive behavior, and it's uninviting, slow and not intuitive at all. There's no modern look to the elements (a la Bootstrap, etc.) and some boxes are too small for content they are to hold. 
+
+Here's for a box for example, that is supposed to hold five letters, one for each a day of the work-week:
 
 <img src=https://github.com/tbensky/selenium-peoplesoft/blob/master/Images/000_day_pattern.png height=100>
 
 
- Changes are impossible to implement, because PS is typically used by large organizations requring many levels of committees for approving fixes. Some text-entry boxes require one to input data in a certain format, which could be eliminated with a form-data post-processing step on the server side of having the computer pad numbers with zeros and place a space between them. An as example, suppose I need to place a class in room 101 of building 180. How about typing in 180-101? 
+ Changes to PS are impossible to implement, because it is typically used by large organizations requring many levels of committees for approving fixes. 
+
+ Some text-entry boxes require one to input data in a certain format, which could be eliminated with some simple form-data processing on the server side. 
+
+An as example, suppose I need to place a class in room 101 of building 180. How about typing in 180-101? 
 
 <img src=https://github.com/tbensky/selenium-peoplesoft/blob/master/Images/005_180101_01.png height=200>
 
@@ -35,12 +41,12 @@ Then there's the dreaded spinners and calls to the server with each focus change
 
 <img src=https://github.com/tbensky/selenium-peoplesoft/blob/master/Images/004_spinner.png>
 
-These annoying spinners will turn out to be very useful later on though (stay tuned).
+(Note: These annoying spinners will turn out to be very useful later on.)
 
 
 # My data for PS
 
-I must use PS to tell the university about my local department's scheduling plans for upcoming terms (what classes, where, times of day, intructor names, etc.).  Once in a backend database, the data then goes to student registration pages (also some derivative of PS), payroll, tuition bills, etc. 
+I must use PS to tell the university about my local department's scheduling plans for upcoming terms (what classes, where, times of day, intructor names, etc.).  Once in a backend database, the data then goes to student registration pages (also some derivative of PS), payroll, tuition bills, and some data visualization tools, etc. 
 
 Internally, as I create my department's schedule, I end up with a CSV file containing all information about my department's upcoming course offerings. Something like this:
 
@@ -55,11 +61,15 @@ GEOL-102,02,9999,DIS,180 -0233,W,10:10 AM,11:00 AM,Y,30,N,last6,first6,emplid6,,
 ...
 ...
 ```
-This goes on typically for about 200 lines.  Here you can see classes, week days, times, etc. Making this CSV is also a lot of work, but more so on the side of planning.  (The genetic algorithm I used to do this planning is another topic.)  Nonetheless, this is our schedule, and it must go into PS by a certain deadline four times a year, once for each term. Yes a large portion of a previous term's data is rolled over, but with all of the small changes typically needed, this rollover is only marginally useful.  There is still much work to be done.  Further, data views in PS are non-existent, so you are forced to come up with your own. In my case, it's graphical drawings of rooms with classes tiled in them, created using scheduling software of my own design.  So then, I'm off into my own views and staying synced with PS becomes a huge issue. If I click to drag a class to an hour later in the day (and maybe do this countless times to tweak the schedule) in my planning phase, how does this make it back into PS?
+This goes on typically for about 200 lines.  Here you can see classes, week days, times, etc. Making this CSV is also a lot of work, but more so on the side of planning.  (The genetic algorithm I used to do this planning is another topic.)  Nonetheless, this is our schedule, and it must go into PS by a certain deadline four times a year, once for each term. 
+
+Yes a large portion of a previous term's data is rolled over, but with all of the small changes typically needed, this rollover is only marginally useful.  There is still a lot work to be done.  Further, data views in PS are non-existent, so you are forced to come up with your own. In my case, it's graphical drawings of rooms with classes tiled in them, created using scheduling software of my own design.  So, when off into my own views, staying synced with PS becomes a huge issue. If I click to drag a class to an hour later in the day (and maybe do this countless times to any number of classes) in my planning phase, how does this make it back into PS?
 
 When I first started this, I would print my final plan on paper, get out a ruler for keeping track, and type each line into PS. Usually to the tune of 180 classes or so. I know this is crazy, but in large organizations, printing data on one computer to enter into another computer is pretty common. 
 
-At one point a while back, I said "enough."  A friend who does web-development once showed me a testing tool called "Selenium," so I decided to take a look. It even says on their website "Boring web-based administration tasks can (and should) also be automated..."  This project shows how I use Selenium to read in my CSV and type it into PS for me. As long as PS was written for robots to use, let's just let a robot use it then!
+At one point a while back, I said "enough."  A friend who does web-development once showed me a testing tool called "Selenium," so I decided to take a look. It even says on their website "Boring web-based administration tasks can (and should) also be automated..."  
+
+This repository shows how I use Selenium to read in my CSV and type it into PS for me. As long as PS was written for robots to use, let's just let a robot use it then!
 
 # Selenium
 
@@ -81,15 +91,17 @@ from selenium.webdriver.support import expected_conditions as EC
 #This example requires Selenium WebDriver 3.13 or newer
 with webdriver.Chrome('/Users/tom/Dropbox/Selenium/chromedriver') as driver:
     wait = WebDriverWait(driver, 10)
-    driver.get("https://google.com/ncr")
+    driver.get("https://google.com/")
     driver.find_element(By.NAME, "q").send_keys("cheese" + Keys.RETURN)
     first_result = WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.CSS_SELECTOR , "h3>div")))
     print(first_result.get_attribute("textContent"))
 ```
 
-Casually browsing the code, you can see how the page ```https://google.com/ncr``` is requested.  Google's search box is famously referred in the underlying HTML by the same of ```q```. You tell Selenium to find this element in the HTML data on Google's main search page (```find_element```).  Once found, into this element you have Selenium type, via the ```send_keys``` function, the text ```cheese``` followed by return. In other words, you are having Selenium search for the word ```cheese```--and you'll see it all happen in the automated Chrome view that the script will pop up on your screen.
+Casually browsing the code, you can see how the page ```https://google.com/``` is requested.  Google's search box is famously referred in the underlying HTML by the same of ```q```. You tell Selenium to find this element in the HTML data on Google's main search page (```find_element```).  Once found, into this element you have Selenium type, via the ```send_keys``` function, the text ```cheese``` followed by return. In other words, you are having Selenium search for the word ```cheese```--and you'll see it all happen in the automated Chrome view that the script will pop up on your screen.
 
-Given lags and general random time delays on the web, you don't expect any server pages to be loaded instantly, so you tell the web-driver to always wait 10 seconds for result before timing out. You can do whatever you wish with the result of your search query. In this case, the HTML fragment ```h3>div``` which starts the "Show More" clickable tag on the search results page. Running this code with ```python example.py``` will result, via the final line ```print(first_result.get_attribute("textContent"))``` with the text ```Show More``` in your terminal. Congratulations: you just did an automated Google search and fished something out of the search results.
+Given lags and general random time delays on the web, you don't expect any server pages to be loaded instantly, so you tell the web-driver to always wait 10 seconds for result before timing out. You can do whatever you wish with the result of your search query. In this case, the HTML fragment ```h3>div``` is waited for.  This starts the "Show More" clickable tag on the Google search results page. Running this code with ```python example.py``` will result, via the final line ```print(first_result.get_attribute("textContent"))``` with the text ```Show More``` being displayed in your terminal. 
+
+Congratulations: you just did an automated Google search and fished something out of the search results.
 
 ## Automating
 
@@ -173,7 +185,7 @@ Required imports at the top, then the code begins.  I didn't want to hardcode by
 
 ```python autops username password```
 
-(I know, I know, passwords on the command line.)  Next I start a timer and open the webdriver for Chrome (Safari, Firefox, etc. drivers are also available). There will also be a lot of prints to stdout, to help me keep track of what's going on.
+(I know, I know, passwords on the command line.)  Next I start a timer (to get a sense for how long a job runs for) and open the webdriver for Chrome (Safari, Firefox, etc. drivers are also available). There will also be a lot of prints to stdout, to help me keep track of what's going on.
 
 So I pull in my enterprise login page, then fill in my username and password using a function called `fill_in_by_id.` This is a function I wrote that
 will fill in a HTML text box uniquely identified with the ```id=``` tag. As above, I identified the tag using the Firefox Developer browser. Here is the
@@ -188,8 +200,8 @@ def fill_in_by_id(elem_id,text):
 	time.sleep(0.5)
 ```
 
-First, we wait for the element "by id" to appear in the page, clear it (literally, remove any text that may be in it), then send out the needed string (as if typed). It was
-important in PS to simulate a tab key press at the end of all such input. It took a while to figure out that this always forces the text field to reconcile with the server (it brings up a spinner). We then pause for 0.5 seconds. Yes, when using Selenium, get used to putting in Python's `time.sleep()` to slow your script down, so it won't race past any relatively slower server you may be talking to.
+First, we wait for the element "by id" to appear in the page, clear it (literally, remove any text that may be in it), then send out the needed string (as if typed). It is
+important in PS to simulate a tab key press at the end of all such input. It took a while to figure out that this always forces the text field to reconcile with the server (it brings up a spinner). It then pauses for 0.5 seconds. Yes, when using Selenium, get used to putting in Python's `time.sleep()` here and there to slow your script down, so it won't race past any relatively slower server you may be talking to.
 
 The `wait_for_by_id()` function is also custom, and looks like this:
 
@@ -207,9 +219,9 @@ def wait_for_by_id(elem_id):
 ```
 
 As you can see, we tell the web-driver to wait 10 seconds until the webpage we're loading detects the HTML element we seek becoming visible.  A bit of a failsafe in also
-included using the `try/except` construct. I found PS to be a strange and wildly erratic system in the timing of its responses. This version of `wait_for_by_id()` seem to work best and the `except` allows us to recover/continue a lengthy input run in the case of some PS spasm.
+included using the `try/except` construct. I found PS to be a wildly erratic system in the timing of its responses. This version of `wait_for_by_id()` seem to work best and the `except` allows us to recover/continue a lengthy input run in the case of some PS spasm.
 
-You should be able to use this plan to log in to your enterprise, as needed. Don't forget to find your "login" button you Selenium can "click it" to log in. Mine is clicked using:
+You should be able to use this plan to log in to your enterprise, as needed. Don't forget to find your "login" button, so Selenium can "click it" to log you in. Mine is clicked using:
 
 ```python
 elem = browser.find_element_by_name("_eventId_proceed")
@@ -226,9 +238,9 @@ Once in, you likely need to navigate to your data entry area. For me, this invol
 click_on_by_id("tabLink_u21l1s5")
 ```
 
-I found this to be unreliable at least in dealing with PS. In other words, sometimes Selenium would just sit, apparently unable to find the link with this id.  You may run into trouble like this, likely because elements are in differenet iframes. (I never quite understood how Selenium handles iframes. I think it isolates HTML entities into each, meaning you can't directly "see" elements in a iframe unless you explicitly change into it.)
+I found this however, to be unreliable when dealing with PS. In other words, sometimes Selenium would just sit, apparently unable to find the link with this id.  You may run into trouble like this, likely because elements are in differenet iframes. (I never quite understood how Selenium handles iframes. I think it isolates HTML entities into each, meaning you can't directly "see" elements in a iframe unless you explicitly change into it.)
 
-Here is `click_on_by_id()`:
+Nonetheless, here is `click_on_by_id()`:
 
 ```python
 def click_on_by_id(elem_id):
@@ -239,7 +251,7 @@ def click_on_by_id(elem_id):
 
 You see a call again to `wait_for_by_id()`, which does a `.click` instead of a `send_keys()`. This is the only difference between doing a text fill and a click in Selenium.
 
-It turns out that a more robust way of finding elements in a page is using its "xpath." These are step by step paths into the DOM object to unambiguously point to an HTML element in a document.  We defaulted to using xpaths throughout this work, as they seem more reliable in finding elements, particularly in the vast PS jungle.  (PS jungle: At some point, we even started feeling sorry for browsers used to interact with PS.) Xpaths, however are less robust in the long term, as any code change on the end of PS will break its use. (But I don't think PS changes very much!)
+It turns out that a more exacting way of finding elements in a page is using its "xpath." These are step by step paths into the DOM object to unambiguously point to an HTML element in a document.  We defaulted to using xpaths throughout this work, as they seem more reliable in finding elements, particularly in the vast PS jungle.  (PS jungle: At some point, I even started feeling sorry for *browsers* used to interact with PS.) Xpaths, however are less robust in the long term, as any code change on the end of PS will break its use. (But I don't think PS changes very much!)
 
 The Firefox Developer will show you such xpaths. Just right click on an element HTML down in the code box, and you can copy out the xpath to an element. 
 
@@ -286,7 +298,7 @@ This second click essentially brings us to the main PS starting point, as it is 
 
 # Getting the CSV into PS
 
-Now for the big moment. Some basics of Selenium are covered, and now it's time tackle getting my CSV auto-typed into PS. The CSV file above has a header describing each column, that looks like this:
+Now for the big moment. With some basics of Selenium are covered, it's now time to tackle getting the CSV data auto-typed into PS. The CSV file above has a header describing each column, that looks like this:
 
 ```class,section_number,assoc_number,type,room,days,start,end,print,ecap,enroll,last,first,emplid,topic,notenbr```
 
@@ -298,7 +310,7 @@ To begin Selenium takes me to a class entry form that looks like this
 
 Once again, I used the Firefox Developer to find xpaths or IDs for all boxes, dropdowns, and tabs I would be needing. This first tab for example has the id `ICTAB_0`. The "Class section" (id=`CLASS_TBL_CLASS_SECTION$0"`) and "Associated class" (id=`CLASS_TBL_SSR_COMPONENT$0`) boxes, for example, are in columns 2 and 3 of my CSV file.
 
-The tab labeled "Meetings" (id=`ICTAB_1`) has historically been the killer one to deal with, as it contains the boxes for start, end, and days a class meets. Manually entering data into this form was so arduous and error prone. All of the small details, no formatting help from the web-interface, and spinners after focus loss in each field were such an energy suck.
+The tab labeled "Meetings" (id=`ICTAB_1`) has historically been the killer one to deal with, as it contains the boxes for start, end, and days a class meets. Manually entering data into this form is so arduous and error prone. All of the small details, no formatting help from the web-interface, and spinners to wait for after focus loss in each field.  This is all part of "the curse."
 
 ![Firefox web inspector](Images/008_meetings.png)
 
@@ -411,11 +423,13 @@ def enter_class_info(section_number,assoc_number,type,enroll_type,print_yn,room,
 	wait_for_spinner()
 ```
 
-You can follow along in the code, and see how I tell Selenium to click on tabs by ID, then fill in boxes, checkboxes or dropdowns, based on what's in the given tab. Notice the `time.sleep(1)` lines.  After a lot of "cutting and trying" these made things work. Don't be shy about putting a lot of these in your own script at least initially. The biggest problem with Selenium is when the script somehow gets out of sync with the web-interaction. The ``if`` statements save navigation time if fields entry is empty.
+You can follow along in the code, and see how I tell Selenium to click on tabs by their ID (or Xpaths--IDs seem to hold up in this case), then fill in boxes, checkboxes or dropdowns, based on what's in the given tab. 
+
+Notice the `time.sleep(1)` lines.  After a lot of "cutting and trying" these made things work. Don't be shy about putting a lot of these in your own script at least initially. The biggest problem with Selenium is when the script somehow gets out of sync with the web-interaction. When in doubt, just make your script wait a bit. The ``if`` statements save navigation time if data for a given field is empty.
 
 ## Back to the spinner: wait_for_spinner()
 
-As irritating as the spinners are to the human-based data-entry effort, they help enormously here to keep things on track in this automated mode. Why? I always tell Selenium to simulate a "tab" key after entering data. This forces PS to  need to "call-home" to its server, and a spinner comes up.  After having a lot of trouble keeping the script in sync with the web-interactions, it dawned on me to always wait for the spinner to disappear before continuing. This meant PS was happy with the last data entry.
+As irritating as the spinners are to the human-based data-entry effort, they help enormously here to keep things on track in this automated mode. Why? I always tell Selenium to simulate a "tab" key after entering data. This forces PS to its needed "call-home" to its server. A spinner comes up when this happens.  After having a lot of trouble keeping the script in sync with the web-interactions, it dawned on me to always wait for the spinner to disappear before continuing. This meant PS is now happy with the last data entry.
 
 It was rather comical to try to find the HTML ID for the spinner though, as it would come and go quickly. I had to enter some faux data in the Firefox Developer, then hover quickly to the place on the screen where the spinner appeared, then watch the code section for its name (all within a second or two). I think I finally nailed it down, as shown here. There's both a spinner and a "Saved..." message PS puts out, so I wait for both of them to clear (or become "invisible") before proceeding to the next data entry field.
 
@@ -432,21 +446,22 @@ def wait_for_spinner():
 	WebDriverWait(browser, LONG_TIMEOUT).until(EC.invisibility_of_element_located((By.XPATH, LOADING_ELEMENT_XPATH)))
 	print "spinner done"
 ```
+
 This really helped, and allows for very long data entry runs to work without a hitch. Although I still have a feeling I missed something, I do see the script pause while spinners appear, only to continue as soon as the spinner disappears again.
 
 
 # Closing
 
-This works!  And, it saves me not just time but I can avoid the foot-dragging associated with this scheduling job, knowing "dealing with PS" was coming.  I know once I focus on the planning, the rest is just a matter of running this script. 
+This works!  And, it saves me not just time but, I can avoid the foot-dragging associated with this scheduling job, knowing that "dealing with PS" was coming.  I know once I get the planning done, the rest is just a matter of running this script. 
 
 Here you can see it entering information for a class called PHYS-111 (watch the fast 'typing speed' and the spinners in the upper right corner!).
 
 [![Watch it work](https://img.youtube.com/vi/dH0tezaQcVQ/0.jpg)](https://www.youtube.com/watch?v=dH0tezaQcVQ)
 
 
-My full code for `autops.py` is in the `src` folder.  I generally approch data entry from an as needed basis, so my script has a lot of commented out blocks used for this and that. But all of my tasks are based on the core functions presented above.
+The full code for `autops.py` is in the `src` folder.  I generally approch data entry from an as needed basis, so my script has a lot of commented out blocks used for this and that. But all of my tasks are based on the core functions presented above. Python as a language is helpful for throwing together quick data-entry logic.
 
-When doing manual entry, I would always have to do a "diff" between by records and PS to be sure I was in sync. This always took 24 hours, since after any data entry, I would have to wait a day for my university to "refresh" local tables from PS (PS does not have any data export functionality). I would pull this local table, and diff it with my csv file, then go in and fix errors until the diff result was empty.  This would usually take a whole week (10 min of diffing, them wait 24 hour to diff again).  There are no errors now, since what goes into PS comes right from the CSV.
+When doing manual entry, I would always have to do a "diff" between my CSV and PS to be sure I was in sync. This always took 24 hours, since after any data entry, I would have to wait a day for my university to "refresh" local tables from PS (PS does not have any data export functionality). I would then pull this local table, and diff it with my csv file, then go in and fix errors until the diff result was empty.  This would usually take a whole week (10 min of diffing, then another 24 hour wait to diff again).  There are no errors now, since what goes into PS comes right from the CSV (i.e. no human involved).
 
-Also, in terms of staying synced, when I make changes, I just tell Selenium to delete what in PS and re-enter everything. It' just a computer talking to a computer, so it's no sweat for me. I had a grand plan of using Selenium to probe differences, but that got too messy.
+Also, in terms of staying synced, when I make changes, I just tell Selenium to delete what in PS and re-enter everything. I also usually run the script in blocks, having it only enter all classes of a given kind (i.e. all PHYS-121s, etc.) so I don't rely too much on seamless completion of a very large entry job.  All told now, it's just a computer talking to a computer, so it's no sweat for me. I had a grand plan of using Selenium to probe differences, but that got too messy.
 
