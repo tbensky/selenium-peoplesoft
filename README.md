@@ -1,6 +1,6 @@
 ### tl;dr
 
-* Here is a summary of using Selenium to automate a large data entry job into PeopleSoft.
+* Using Python and Selenium to automate a large data entry job into PeopleSoft.
 * It takes a CSV file of the needed data and automates its entry into PeopleSoft.
 * Selenium is awesome, and it really works!
 * If you have some arduous data entry task, I encourage you to look into Selenium to automate it.
@@ -10,16 +10,15 @@
 
 I've had to use PeopleSoft for part of my job (scheduling classes in a university physics department) for about 6 years now, and in this time have concluded that: *PeopleSoft is a curse on humanity*.  
 
-I'm not even sure what "PeopleSoft" (PS) actually is, but the curse for me is the web-based user interface to CRUDing on a backend database that runs my organization (a large university). I actually feel sorry for anyone who uses PS, and a lot of people do. You can spot on a screen it a mile away. The tight, small fonts and little boxes littered all over the screen. There's no responsive behavior, and it's uninviting, slow and not intuitive at all. There's no modern look to the elements (a la Bootstrap, etc.) and some boxes are too small for content they are to hold. 
+I'm not even sure what "PeopleSoft" (PS) actually is, but the curse for me is the web-based user interface to CRUDing on a backend database that runs my organization (a large university). I actually feel sorry for anyone who uses PS, and a lot of people do. You can spot on a screen it a mile away. The tight, small fonts and little boxes littered all over the screen. There's no responsive behavior, and it's uninviting, slow and unintuitive. There's no modern look to the elements (a la Bootstrap, etc.) and some boxes are too small for content they are to hold. 
 
 Here's for a box for example, that is supposed to hold five letters, one for each a day of the work-week:
 
 <img src=https://github.com/tbensky/selenium-peoplesoft/blob/master/Images/000_day_pattern.png height=100>
 
+Changes to PS are impossible to implement, because it is typically used by large organizations requring many levels of committees for approving fixes. 
 
- Changes to PS are impossible to implement, because it is typically used by large organizations requring many levels of committees for approving fixes. 
-
- Some text-entry boxes require one to input data in a certain format, which could be eliminated with some simple form-data processing on the server side. 
+Some text-entry boxes require one to input data in a certain format, which could be eliminated with some simple form-data processing on the server side. 
 
 An as example, suppose I need to place a class in room 101 of building 180. How about typing in 180-101? 
 
@@ -89,7 +88,7 @@ from selenium.webdriver.support.expected_conditions import presence_of_element_l
 from selenium.webdriver.support import expected_conditions as EC
 
 #This example requires Selenium WebDriver 3.13 or newer
-with webdriver.Chrome('/Users/tom/Dropbox/Selenium/chromedriver') as driver:
+with webdriver.Chrome('/path/to/chromedriver') as driver:
     wait = WebDriverWait(driver, 10)
     driver.get("https://google.com/")
     driver.find_element(By.NAME, "q").send_keys("cheese" + Keys.RETURN)
@@ -167,7 +166,7 @@ username = sys.argv[1]
 password = sys.argv[2]
 
 start = time.time()
-browser = webdriver.Chrome('/Users/tom/Dropbox/Selenium/chromedriver')
+browser = webdriver.Chrome('/path/to/chromedriver')
 #browser = webdriver.Safari()
 #browser.maximize_window()
 browser.get('https://my.enterprise.web.address')
