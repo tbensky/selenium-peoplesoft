@@ -10,7 +10,7 @@
 
 I've had to use PeopleSoft for part of my job (scheduling classes in a university physics department) for about 6 years now, and in this time have concluded that: *PeopleSoft is a curse on humanity*.  
 
-I'm not even sure what "PeopleSoft" (PS) actually is, but the curse for me is the web-based user interface to CRUDing on a backend database that runs my organization (a large university). I actually feel sorry for anyone who uses PS, and a lot of people do. You can spot on a screen it a mile away. The tight, small fonts and little boxes littered all over the screen. There's no responsive behavior, and it's uninviting, slow and unintuitive. There's no modern look to the elements (a la Bootstrap, etc.) and some boxes are too small for content they are to hold. 
+I'm not even sure what "PeopleSoft" (PS) actually is, but the curse for me is the web-based user interface to CRUDing on a backend database that runs my organization (a large university). I actually feel sorry for anyone who uses PS (and a lot of people do). You can spot on a screen it a mile away. The tight, small fonts and little boxes littered all over the screen. There's no responsive behavior, and it's uninviting, slow and unintuitive. There's no modern look to the elements (a la Bootstrap, etc.) and some boxes are too small for content they are to hold. The fonts used look like the ones on the original 80x25 IBM PC.
 
 Here's for a box for example, that is supposed to hold five letters, one for each a day of the work-week:
 
@@ -41,6 +41,8 @@ Then there's the dreaded spinners and calls to the server with each focus change
 <img src=https://github.com/tbensky/selenium-peoplesoft/blob/master/Images/004_spinner.png>
 
 (Note: These annoying spinners will turn out to be very useful later on.)
+
+The point of this rant is that if PS is so unfriendly for humans to use, maybe it is better suited to be driven by another computer? Hmmm....
 
 
 # My data for PS
