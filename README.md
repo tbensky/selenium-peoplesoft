@@ -103,7 +103,7 @@ Given lags and general random time delays on the web, you don't expect any serve
 
 Congratulations: you just did an automated Google search and fished something out of the search results.
 
-## Automated link click
+## Automated a link click
 
 Let's go a step further, and have Selenium click on the "Next" link, to take us to the 2nd page of search results.  To do this, you'll have to fish through the search page's html code and try to figure out how the "Next" link works.
 
