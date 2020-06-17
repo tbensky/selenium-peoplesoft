@@ -64,7 +64,7 @@ GEOL-102,02,9999,DIS,180 -0233,W,10:10 AM,11:00 AM,Y,30,N,last6,first6,emplid6,,
 ```
 This goes on typically for about 200 lines.  Here you can see classes, week days, times, etc. Making this CSV is also a lot of work, but more so on the side of planning.  (The genetic algorithm I used to do this planning is another topic.)  Nonetheless, this is our schedule, and it must go into PS by a certain deadline four times a year, once for each term. 
 
-Yes a large portion of a previous term's data is rolled over, but with all of the small changes typically needed, this rollover is only marginally useful.  There is still a lot work to be done.  Further, data views in PS are non-existent, so you are forced to come up with your own. In my case, it's graphical drawings of rooms with classes tiled in them, created using scheduling software of my own design.  So, when off into my own views, staying synced with PS becomes a huge issue. If I click to drag a class to an hour later in the day (and maybe do this countless times to any number of classes) in my planning phase, how does this make it back into PS?
+A large portion of a previous term's data is rolled over within PS, but with all of the small changes typically needed, this rollover is only marginally useful.  There is still a lot work to be done.  Further, data views in PS are non-existent, so you are forced to come up with your own. In my case, it's graphical drawings of rooms with classes tiled in them, created using scheduling software of my own design.  So, when off into my own views, staying synced with PS becomes a huge issue. If I click to drag a class to an hour later in the day (and maybe do this countless times to any number of classes) in my planning phase, how does this make it back into PS?
 
 When I first started this, I would print my final plan on paper, get out a ruler for keeping track, and type each line into PS. Usually to the tune of 180 classes or so. I know this is crazy, but in large organizations, printing data on one computer to enter into another computer is pretty common. 
 
@@ -247,7 +247,9 @@ def click_on_by_id(elem_id):
 
 You see a call again to `wait_for_by_id()`, which does a `.click` instead of a `send_keys()`. This is the only difference between doing a text fill and a click in Selenium.
 
-It turns out that a more exacting way of finding elements in a page is using its "xpath." These are step by step paths into the DOM object to unambiguously point to an HTML element in a document.  We defaulted to using xpaths throughout this work, as they seem more reliable in finding elements, particularly in the vast PS jungle.  (PS jungle: At some point, I even started feeling sorry for *browsers* used to interact with PS.) Xpaths, however are less robust in the long term, as any code change on the end of PS will break its use. (But I don't think PS changes very much!)
+It turns out that a more exacting way of finding elements in a page is using its "xpath." These are step by step paths into the DOM object to unambiguously point to an HTML element in a document.  I gradually defaulted to using xpaths throughout this work, as they seem more reliable in finding elements, particularly in the vast PS HTML jungle.  (PS HTML jungle: At some point, I even started feeling sorry for *browsers* used to interact with PS, and BTW: the Oracle Interactive Dashboard, which provide views of PS data locks up the Selenium IDE plugin.
+
+I found use if xpaths to be frowned upon out there, as they are less robust in the long term, as any code changes to PS will break their use. (But I don't think PS changes very much. My xpaths have been going strong for over a year now.)
 
 The Firefox Developer will show you such xpaths. Just right click on an element HTML down in the code box, and you can copy out the xpath to an element. 
 
