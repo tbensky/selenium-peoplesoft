@@ -45,7 +45,7 @@ Then there's the dreaded spinners and calls to the server with each focus change
 The point of this rant is that if PS is so unfriendly for humans to use, maybe it is better suited to be driven by another computer? Hmmm....
 
 
-# My data for PS
+# My data entry needs for PeopleSoft
 
 I must use PS to tell the university about my local department's scheduling plans for upcoming terms (what classes, where, times of day, intructor names, etc.).  Once in a backend database, the data then goes to student registration pages (also some derivative of PS), payroll, tuition bills, and some data visualization tools, etc. 
 
