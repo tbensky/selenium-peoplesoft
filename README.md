@@ -1,6 +1,6 @@
 ### tl;dr
 
-* Using Python and Selenium to automate a large data entry job into PeopleSoft.
+* This demonstrate the use of Python and Selenium to automate a large data entry job into PeopleSoft.
 * It takes a CSV file of the needed data and automates its entry into PeopleSoft.
 * Selenium is awesome, and it really works!
 * If you have some arduous data entry task, I encourage you to look into Selenium to automate it.
@@ -70,14 +70,14 @@ When I first started this, I would print my final plan on paper, get out a ruler
 
 At one point a while back, I said "enough."  For at least a week, I was contemplating aiming a video feed at my computer screen, and using OpenCV, to control an Arudino Leonardo simulating mouse clicks and keystrokes to input my data.  Luckily, a friend who does web-development once showed me a testing tool called "Selenium," so I decided to take a look. It even says on their website "Boring web-based administration tasks can (and should) also be automated..."  
 
-This repository shows how I use Selenium to read in my CSV and type it into PS for me. As long as PS was written for robots to use, let's just let a robot use it then!
+This repository shows how I use Selenium to read in my CSV and type it into PS for me.
 
-# Selenium
+# Quick Introduction to Selenium
 
 [Selenium](https://www.selenium.dev) is some core of all of the popular web-browsers (Chrome, Firefox, Safari) that can be controlled via software. That means all clicks, fill-in boxes, 'save' buttons and the like can be triggered using software. I use the Python 'bindings' for it, and somehow when I run my Python script, a Chrome browser opens up that says "Chrome is being controlled by automated test software." This means two things: 1) The host server (i.e. PS) doesn't know anything unsual is going on--it's just Chrome afterall and 2) I don't click to control this browser; the Python script does.
 
 
-## Let's make a click
+## Read a web-page and retrieve some information from it
 
 If you're curious, [the documentation](https://www.selenium.dev/documentation) for Selenium is excellent. This first Python example shows you the general plan:
 
@@ -89,7 +89,6 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support.expected_conditions import presence_of_element_located
 from selenium.webdriver.support import expected_conditions as EC
 
-#This example requires Selenium WebDriver 3.13 or newer
 with webdriver.Chrome('/path/to/chromedriver') as driver:
     wait = WebDriverWait(driver, 10)
     driver.get("https://google.com/")
@@ -104,7 +103,7 @@ Given lags and general random time delays on the web, you don't expect any serve
 
 Congratulations: you just did an automated Google search and fished something out of the search results.
 
-## Automating
+## Automated link click
 
 Let's go a step further, and have Selenium click on the "Next" link, to take us to the 2nd page of search results.  To do this, you'll have to fish through the search page's html code and try to figure out how the "Next" link works.
 
@@ -158,8 +157,6 @@ import time
 import csv
 import sys
 
-
-
 if len(sys.argv) != 3:
 	print "Usage: autops username password"
 	exit()
@@ -169,8 +166,6 @@ password = sys.argv[2]
 
 start = time.time()
 browser = webdriver.Chrome('/path/to/chromedriver')
-#browser = webdriver.Safari()
-#browser.maximize_window()
 browser.get('https://my.enterprise.web.address')
 handle0 = browser.current_window_handle
 print handle0
@@ -448,7 +443,7 @@ def wait_for_spinner():
 	print "spinner done"
 ```
 
-This really helped, and allows for very long data entry runs to work without a hitch. Although I still have a feeling I missed something, I do see the script pause while spinners appear, only to continue as soon as the spinner disappears again.
+In this case, using Xpaths to locate the spinner was what worked, (although it appears as if the id names seen in both might have worked too).  This really helped, and allows for very long data entry runs to work without a hitch. Although I still have a feeling I missed something, I do see the script pause while spinners appear, only to continue as soon as the spinner disappears again.
 
 
 # Closing
