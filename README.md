@@ -309,7 +309,7 @@ To begin Selenium takes me to a class entry form that looks like this
 
 Once again, I used the Firefox Developer to find xpaths or IDs for all boxes, dropdowns, and tabs I would be needing. This first tab for example has the id `ICTAB_0`. The "Class section" (id=`CLASS_TBL_CLASS_SECTION$0"`) and "Associated class" (id=`CLASS_TBL_SSR_COMPONENT$0`) boxes, for example, are in columns 2 and 3 of my CSV file.
 
-The tab labeled "Meetings" (id=`ICTAB_1`) has historically been the killer one to deal with, as it contains the boxes for start, end, and days a class meets. Manually entering data into this form is so arduous and error prone. All of the small details, no formatting help from the web-interface, and spinners to wait for after focus loss in each field.  This is all part of "the curse."
+The tab labeled "Meetings" (id=`ICTAB_1`) has historically been the killer one to deal with, as it contains the boxes for start, end, and days a class meets. Manually entering data into this form is so arduous and error prone. All of the small details, no formatting help from the web-interface, and spinners to wait for after focus loss in each form element (even tick boxes!).  This is all part of "the curse."
 
 ![Firefox web inspector](Images/008_meetings.png)
 
@@ -422,13 +422,13 @@ def enter_class_info(section_number,assoc_number,type,enroll_type,print_yn,room,
 	wait_for_spinner()
 ```
 
-You can follow along in the code, and see how I tell Selenium to click on tabs by their ID (or Xpaths--IDs seem to hold up in this case), then fill in boxes, checkboxes or dropdowns, based on what's in the given tab. 
+You can follow along in the code, and see how I tell Selenium to click on tabs by their ID (or xpaths, but IDs seem to hold up in this case), then fill in boxes, checkboxes or dropdowns, based on what's in the given tab. 
 
 Notice the `time.sleep(1)` lines.  After a lot of "cutting and trying" these made things work. Don't be shy about putting a lot of these in your own script at least initially. The biggest problem with Selenium is when the script somehow gets out of sync with the web-interaction. When in doubt, just make your script wait a bit. The ``if`` statements save page navigation time if data for a given field is empty.
 
 ## Back to the spinner: wait_for_spinner()
 
-As irritating as the spinners are to the human-based data-entry effort, they help enormously here to keep things on track in this automated mode. Why? I always tell Selenium to simulate a "tab" key after entering data. This forces PS to its needed "call-home" to its server. A spinner comes up when this happens.  After having a lot of trouble keeping the script in sync with the web-interactions, it dawned on me to always wait for the spinner to disappear before continuing. This meant PS is now happy with the last data entry.
+As irritating as the spinners are to the human-based data-entry effort, they help enormously here to keep things on track in this automated mode. Why? I always tell Selenium to (simulate a "tab" key after entering data)[https://github.com/tbensky/selenium-peoplesoft/blob/cbcf40d99993a2ec40b6cfad69121d5017f8e7c9/src/autops.py#L57]. This forces PS to its needed "call-home" to its server. A spinner comes up when this happens.  After having a lot of trouble keeping the script in sync with the web-interactions, it dawned on me to always wait for the spinner to disappear before continuing. This meant PS is now happy with the last data entry.
 
 It was rather comical to try to find the HTML ID for the spinner though, as it would come and go quickly. I had to enter some faux data in the Firefox Developer, then hover quickly to the place on the screen where the spinner appeared, then watch the code section for its name (all within a second or two). I think I finally nailed it down, as shown here. There's both a spinner and a "Saved..." message PS puts out, so I wait for both of them to clear (or become "invisible") before proceeding to the next data entry field.
 
