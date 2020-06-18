@@ -36,7 +36,7 @@ No again. How about 180 -0101?
 Ok, finally. Everyone using PS at my organization has to type an extra space, and zero pad the room number. Everyone, everytime. Wow.
 
 
-Then there's the dreaded spinners and calls to the server with each focus change for a every entry element (=slow). 
+Then there's the dreaded spinners and calls to the server with each focus change for a every form entry element (=slow). 
 
 <img src=https://github.com/tbensky/selenium-peoplesoft/blob/master/Images/004_spinner.png>
 
@@ -70,14 +70,14 @@ A large portion of a previous term's data is rolled over within PS, but with all
 
 When I first started this, I would print my final plan on paper, get out a ruler for keeping track, and type each line into PS. Usually to the tune of 180 classes or so. I know this is crazy, but in large (government) organizations, I think printing data on one computer to enter into another computer is pretty common. In a case like this, there is simply no alternative (TINA?).
 
-This repository shows how I use Python to read in my CSV and use Selenium to "type" it into PS for me.
+This repository shows how I use Python to read in my CSV and use Selenium to "type" it into PS for me. Sychronization is done by simply deleting what's in PS and re-entering it all.
 
 # Quick Introduction to Selenium
 
-[Selenium](https://www.selenium.dev) is some core of all of the popular web-browsers (Chrome, Firefox, Safari) that can be controlled via software. That means all clicks, fill-in boxes, dropdowns, 'save' buttons and the like can be controlled using software. I use the Python 'bindings' for it, and somehow when I run my Python script, a Chrome browser opens up that says "Chrome is being controlled by automated test software." This means two things: 1) The host server (i.e. PS) doesn't know anything unsual is going on--it's just Chrome afterall and 2) I don't click or type anything to control this browser; the Python script controls it.
+[Selenium](https://www.selenium.dev) is some core of all of the popular web-browsers (Chrome, Firefox, Safari) that can be controlled via software. That means all clicks, fill-in boxes, dropdowns, 'save' buttons and the like can be controlled using software. I use the Python 'bindings' for it, and somehow when I run my Python script, a Chrome browser pops up that says "Chrome is being controlled by automated test software." This means two things: 1) The host server (i.e. PS) doesn't know anything unsual is going on--it's just Chrome afterall and 2) I don't click or type anything to control this browser; the Python script controls it.
 
 
-## Read a web-page and retrieve some information from it
+## Warm-up: Read a web-page and retrieve some information from it
 
 If you're curious, [the documentation](https://www.selenium.dev/documentation) for Selenium is excellent. This first Python example shows you the general plan:
 
@@ -103,7 +103,7 @@ Given lags and general random time delays on the web, you don't expect any serve
 
 Congratulations: you just did an automated Google search and fished something out of the search results.
 
-## Automated a link click
+## More warm-up: Automated a link click
 
 Let's go a step further, and have Selenium click on the "Next" link, to take us to the 2nd page of search results.  To do this, you'll have to fish through the search page's html code and try to figure out how the "Next" link works.
 
