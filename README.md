@@ -430,7 +430,7 @@ Notice the `time.sleep(1)` lines.  After a lot of "cutting and trying" these mad
 
 As irritating as the spinners are to the human-based data-entry effort, they help enormously here to keep things on track in this automated mode. Why? I always tell Selenium to [simulate a "tab" key after typing text into a text-field](https://github.com/tbensky/selenium-peoplesoft/blob/cbcf40d99993a2ec40b6cfad69121d5017f8e7c9/src/autops.py#L57) (doing this was actually a huge step in getting this all to work with PS). 
 
-The tab forces PS to its desperate "call-home" to its server after text entry. A spinner comes up when this happens.  After having a lot of trouble keeping the script in sync with the web-interactions, it dawned on me to always wait for the spinner to disappear before continuing. This meant PS is now happy with the last data entry. This was another huge step in getting this to work.
+The tab forces PS to its desperate "call-home" to its server after text entry. A spinner comes up when this happens.  After having a lot of trouble keeping the script in sync with the web-interactions, it dawned on me to always wait for the spinner to disappear before continuing. This meant PS is now happy with the last data entry. 
 
 It was rather comical to try to find the HTML ID for the spinner though, as it would come and go quickly. I had to enter some faux data in the Firefox Developer, then hover quickly to the place on the screen where the spinner appeared, then watch the code section for its name (all within a second or two). I think I finally nailed it down, as shown here. There's both a spinner and a "Saved..." message PS puts out, so I wait for both of them to clear (or become "invisible") before proceeding to the next data entry field.
 
@@ -449,6 +449,8 @@ def wait_for_spinner():
 ```
 
 In this case, using Xpaths to locate the spinner was what worked, (although it appears as if the id names seen in both might have worked too).  This really helped, and allows for very long data entry runs to work without a hitch. Although I still have a feeling I missed something, I do see the script pause while spinners appear, only to continue as soon as the spinner disappears again.
+
+Syncing the script with these spinners was another huge step in getting this to work.
 
 
 # Closing
