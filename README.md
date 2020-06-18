@@ -42,7 +42,9 @@ Then there's the dreaded spinners and calls to the server with each focus change
 
 (Note: These annoying spinners will turn out to be very useful later on.)
 
-The point of this rant is that if PS is so unfriendly for humans to use, maybe it is better suited to be driven by another computer? Hmmm....
+The point of this rant is that if I find PS is so unfriendly (and exhausting) to use, why not look for some kind of automation to drive any PS transactions, in particular data entry?
+
+At one point a while back, I said "enough."  For at least a week, I was contemplating aiming a video feed at my computer screen, and using OpenCV, to control an Arudino Leonardo simulating mouse clicks and keystrokes to input my data.  Luckily, a friend who does web-development once showed me a testing tool called "Selenium," so I decided to take a look. It even says on their website "Boring web-based administration tasks can (and should) also be automated..."  
 
 
 # My data entry needs for PeopleSoft
@@ -68,13 +70,11 @@ A large portion of a previous term's data is rolled over within PS, but with all
 
 When I first started this, I would print my final plan on paper, get out a ruler for keeping track, and type each line into PS. Usually to the tune of 180 classes or so. I know this is crazy, but in large (government) organizations, I think printing data on one computer to enter into another computer is pretty common. In a case like this, there is simply no alternative (TINA?).
 
-At one point a while back, I said "enough."  For at least a week, I was contemplating aiming a video feed at my computer screen, and using OpenCV, to control an Arudino Leonardo simulating mouse clicks and keystrokes to input my data.  Luckily, a friend who does web-development once showed me a testing tool called "Selenium," so I decided to take a look. It even says on their website "Boring web-based administration tasks can (and should) also be automated..."  
-
-This repository shows how I use Selenium to read in my CSV and type it into PS for me.
+This repository shows how I use Python to read in my CSV and use Selenium to "type" it into PS for me.
 
 # Quick Introduction to Selenium
 
-[Selenium](https://www.selenium.dev) is some core of all of the popular web-browsers (Chrome, Firefox, Safari) that can be controlled via software. That means all clicks, fill-in boxes, 'save' buttons and the like can be triggered using software. I use the Python 'bindings' for it, and somehow when I run my Python script, a Chrome browser opens up that says "Chrome is being controlled by automated test software." This means two things: 1) The host server (i.e. PS) doesn't know anything unsual is going on--it's just Chrome afterall and 2) I don't click to control this browser; the Python script does.
+[Selenium](https://www.selenium.dev) is some core of all of the popular web-browsers (Chrome, Firefox, Safari) that can be controlled via software. That means all clicks, fill-in boxes, dropdowns, 'save' buttons and the like can be controlled using software. I use the Python 'bindings' for it, and somehow when I run my Python script, a Chrome browser opens up that says "Chrome is being controlled by automated test software." This means two things: 1) The host server (i.e. PS) doesn't know anything unsual is going on--it's just Chrome afterall and 2) I don't click or type anything to control this browser; the Python script controls it.
 
 
 ## Read a web-page and retrieve some information from it
@@ -140,6 +140,8 @@ My plan is then to use Selenium to log me into my enterprise and navigate to the
 
 # Automating PeopleSoft
 
+With the basics of Selenium presented, I'll now show how I got Selenium to type my data into PS.
+
 
 ## Log-in first
 
@@ -174,7 +176,6 @@ fill_in_by_id('username',username)
 time.sleep(1)
 fill_in_by_id("password",password)
 time.sleep(1)
-
 ```
 
 Required imports at the top, then the code begins.  I didn't want to hardcode by username and password, so I pass those in as command line parameters, as in 
@@ -197,7 +198,7 @@ def fill_in_by_id(elem_id,text):
 ```
 
 First, we wait for the element "by id" to appear in the page, clear it (literally, remove any text that may be in it), then send out the needed string (as if typed). It is
-important in PS to simulate a tab key press at the end of all such input. It took a while to figure out that this always forces the text field to reconcile with the server (it brings up a spinner). It then pauses for 0.5 seconds. Yes, when using Selenium, get used to putting in Python's `time.sleep()` here and there to slow your script down, so it won't race past any relatively slower server you may be talking to.
+important in PS to simulate a tab key press at the end of text input. It took a while to figure out that this always forces the text field to reconcile with the server (it brings up a spinner). It then pauses for 0.5 seconds. Yes, when using Selenium, get used to putting in Python's `time.sleep()` here and there to slow your script down, so it won't race past any relatively slower server you may be talking to.
 
 The `wait_for_by_id()` function is also custom, and looks like this:
 
@@ -226,7 +227,7 @@ elem.click();
 
 My login button has a HTML name of `"_eventId_proceed`. The Selenium function `find_element_by_name()` will find this button, then the `.click()` will simulate the click.
 
-# Navigating
+## Navigating
 
 Once in, you likely need to navigate to your data entry area. For me, this involves a few clicks through my main univeristy portal (portal=word from the 90s). First, I needed to click on a link with the HTML id of `tabLink_u21l1s5`.  Thus, a line like this:
 
@@ -423,7 +424,7 @@ def enter_class_info(section_number,assoc_number,type,enroll_type,print_yn,room,
 
 You can follow along in the code, and see how I tell Selenium to click on tabs by their ID (or Xpaths--IDs seem to hold up in this case), then fill in boxes, checkboxes or dropdowns, based on what's in the given tab. 
 
-Notice the `time.sleep(1)` lines.  After a lot of "cutting and trying" these made things work. Don't be shy about putting a lot of these in your own script at least initially. The biggest problem with Selenium is when the script somehow gets out of sync with the web-interaction. When in doubt, just make your script wait a bit. The ``if`` statements save navigation time if data for a given field is empty.
+Notice the `time.sleep(1)` lines.  After a lot of "cutting and trying" these made things work. Don't be shy about putting a lot of these in your own script at least initially. The biggest problem with Selenium is when the script somehow gets out of sync with the web-interaction. When in doubt, just make your script wait a bit. The ``if`` statements save page navigation time if data for a given field is empty.
 
 ## Back to the spinner: wait_for_spinner()
 
@@ -462,4 +463,6 @@ The full code for `autops.py` is in the `src` folder.  I generally approch data 
 When doing manual entry, I would always have to do a "diff" between my CSV and PS to be sure I was in sync. This always took 24 hours, since after any data entry, I would have to wait a day for my university to "refresh" local tables from PS (PS does not have any data export functionality). I would then pull this local table, and diff it with my csv file, then go in and fix errors until the diff result was empty.  This would usually take a whole week (10 min of diffing, then another 24 hour wait to diff again).  There are no errors now, since what goes into PS comes right from the CSV (i.e. no human involved).
 
 Also, in terms of staying synced, when I make changes, I just tell Selenium to delete what in PS and re-enter everything. I also usually run the script in blocks, having it only enter all classes of a given kind (i.e. all PHYS-121s, etc.) so I don't rely too much on seamless completion of a very large entry job.  All told now, it's just a computer talking to a computer, so it's no sweat for me. I had a grand plan of using Selenium to probe differences, but that got too messy.
+
+Lastly, this script can successfully 'type in' a 200 line CSV file I need in about an hour.  This is error free, and can run on its own in a virtual desktop, while I get other work done.
 
