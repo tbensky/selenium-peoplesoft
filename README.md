@@ -250,7 +250,7 @@ You see a call again to `wait_for_by_id()`, which does a `.click` instead of a `
 
 It turns out that a more exacting way of finding elements in a page is using its "xpath." These are step by step paths into the DOM object to unambiguously point to an HTML element in a document.  I gradually defaulted to using xpaths throughout this work, as they seem more reliable in finding elements, particularly in the vast PS HTML jungle.  (PS HTML jungle: At some point, I even started feeling sorry for *browsers* used to interact with PS, and BTW: the Oracle Interactive Dashboard, which provide views of PS data locks up the Selenium IDE plugin.
 
-I found use if xpaths to be frowned upon out there, as they are less robust in the long term, as any code changes to PS will break their use. (But I don't think PS changes very much. My xpaths have been going strong for over a year now.)
+It seems as if xpaths are generally frowned upon out there (i.e. on StackOverflow), as they are less robust in the long term, as any code changes to PS will break their use. (But I don't think PS changes very much. My xpaths have been going strong for over a year now.)
 
 The Firefox Developer will show you such xpaths. Just right click on an element HTML down in the code box, and you can copy out the xpath to an element. 
 
