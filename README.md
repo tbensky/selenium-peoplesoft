@@ -1,6 +1,6 @@
 ### tl;dr
 
-* This demonstrate the use of Python and Selenium to automate a large data entry job into PeopleSoft.
+* This demonstrates the use of Python and Selenium to automate a large data entry job into PeopleSoft.
 * It takes a CSV file of the needed data and automates its entry into PeopleSoft.
 * Selenium is awesome, and it really works!
 * If you have some arduous data entry task, I encourage you to look into Selenium to automate it.
