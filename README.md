@@ -1,6 +1,7 @@
 ### tl;dr
 
-* This demonstrates the use of Python and Selenium to automate a large data entry job into PeopleSoft.
+* This project was born out of the frustrating job of entering data into PeopleSoft.
+* It demonstrates the use of Python and Selenium to automate a large data entry job into PeopleSoft.
 * It takes a CSV file of the needed data and automates its entry into PeopleSoft.
 * Selenium is awesome, and it really works!
 * If you have some arduous data entry task, I encourage you to look into Selenium to automate it.
@@ -468,5 +469,5 @@ When doing manual entry, I would always have to do a "diff" between my CSV and P
 
 Also, in terms of staying synced, when I make changes, I just tell Selenium to delete what in PS and re-enter everything. I also usually run the script in blocks, having it only enter all classes of a given kind (i.e. all PHYS-121s, etc.) so I don't rely too much on seamless completion of a very large entry job.  All told now, it's just a computer talking to a computer, so it's no sweat for me. I had a grand plan of using Selenium to probe differences, but that got too messy.
 
-Lastly, this script can successfully 'type in' a 200 line CSV file I need in about an hour.  This is an error free hour, which I can run on its own in a virtual desktop, while I get other work done. Once when working this all from home, I even took a nap while the script was off and running.
+Lastly, this script can successfully 'type in' a 200 line CSV file I need in about an hour.  Long? Short? I don't know. What I do know is that after this hour, I have an error-free data entry job done. I can run the job its own in a virtual desktop, while I get other work done in another. Once when working this all from home, I even took a nap while the script was off and running. How's that for data entry?
 
