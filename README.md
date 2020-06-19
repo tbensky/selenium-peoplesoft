@@ -38,11 +38,11 @@ Ok, finally. Everyone using PS at my organization has to type an extra space, an
 
 The days of the week tick boxes don't quite align with the labels:
 
-<img src=https://github.com/tbensky/selenium-peoplesoft/blob/master/Images/009_align.png height=200>
+<img src=https://github.com/tbensky/selenium-peoplesoft/blob/master/Images/009_align.png width=200>
 
 Maybe a small thing, but requires extra work and focus to be sure ticks are correct. Everytime.  Then there's the dreaded spinners and calls to the server with each focus change for a every form entry element (=slow). 
 
-<img src=https://github.com/tbensky/selenium-peoplesoft/blob/master/Images/004_spinner.png>
+<img src=https://github.com/tbensky/selenium-peoplesoft/blob/master/Images/004_spinner.png width=200>
 
 (Note: These annoying spinners will turn out to be very useful later on.)
 
