@@ -27,17 +27,20 @@ An as example, suppose I need to place a class in room 101 of building 180. How 
 
 Nope. How about 180-0101?
 
-<img src=https://github.com/tbensky/selenium-peoplesoft/blob/master/Images/005_180101_02.png height=200>>
+<img src=https://github.com/tbensky/selenium-peoplesoft/blob/master/Images/005_180101_02.png height=200>
 
 No again. How about 180 -0101?
 
-<img src=https://github.com/tbensky/selenium-peoplesoft/blob/master/Images/005_180101_03.png height=200>>
+<img src=https://github.com/tbensky/selenium-peoplesoft/blob/master/Images/005_180101_03.png height=200>
 
 
 Ok, finally. Everyone using PS at my organization has to type an extra space, and zero pad the room number. Everyone, everytime. Wow.
 
+The days of the week tick boxes don't quite align with the labels:
 
-Then there's the dreaded spinners and calls to the server with each focus change for a every form entry element (=slow). 
+<img src=https://github.com/tbensky/selenium-peoplesoft/blob/master/Images/009_aligh.png height=200>
+
+Maybe a small thing, but requires extra work and focus to be sure ticks are correct. Everytime.  Then there's the dreaded spinners and calls to the server with each focus change for a every form entry element (=slow). 
 
 <img src=https://github.com/tbensky/selenium-peoplesoft/blob/master/Images/004_spinner.png>
 
