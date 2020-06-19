@@ -13,7 +13,9 @@ I've had to use PeopleSoft for part of my job (scheduling classes in a universit
 
 I'm not even sure what "PeopleSoft" (PS) actually is, but the curse for me is the web-based user interface to CRUDing on a backend database that runs my organization (a large university). I actually feel sorry for anyone who uses PS (and a lot of people do). You can spot on a screen it a mile away. The tight, small fonts and little boxes littered all over the screen. There's no responsive behavior, and it's uninviting, slow and unintuitive. There's no modern look to the elements (a la Bootstrap, etc.) and some boxes are too small for content they are to hold. The fonts used look like the ones on the original 80x25 IBM PC.
 
-Here's for a box for example, that is supposed to hold five letters, one for each a day of the work-week:
+A rant? You bet. But its design makes it so exhausting to use. Here are some examples.
+
+Here's a box that is supposed to hold five letters, one for each a day of the work-week:
 
 <img src=https://github.com/tbensky/selenium-peoplesoft/blob/master/Images/000_day_pattern.png height=100>
 
@@ -21,7 +23,7 @@ Changes to PS are impossible to implement, because it is typically used by large
 
 Some text-entry boxes require one to input data in a certain format, which could be eliminated with some simple form-data processing on the server side. 
 
-An as example, suppose I need to place a class in room 101 of building 180. How about typing in 180-101? 
+Further, suppose I need to place a class in room 101 of building 180. How about typing in 180-101? 
 
 <img src=https://github.com/tbensky/selenium-peoplesoft/blob/master/Images/005_180101_01.png height=200>
 
@@ -40,7 +42,7 @@ The days of the week tick boxes don't quite align with the labels:
 
 <img src=https://github.com/tbensky/selenium-peoplesoft/blob/master/Images/009_align.png width=200>
 
-Maybe a small thing, but requires extra work and focus to be sure ticks are correct. Everytime.  Then there's the dreaded spinners and calls to the server with each focus change for a every form entry element (=slow). 
+Maybe a small thing, but requires extra work and mental focus to be sure ticks are correct. Everytime.  Then there's the dreaded spinners and calls to the server with each focus change for a every form entry element (=slow). 
 
 <img src=https://github.com/tbensky/selenium-peoplesoft/blob/master/Images/004_spinner.png width=100>
 
