@@ -13,13 +13,16 @@ I've had to use PeopleSoft for part of my job (scheduling classes in a universit
 
 I'm not even sure what "PeopleSoft" (PS) actually is, but the curse for me is the web-based user interface to CRUDing on a backend database that runs my organization (a large university). I actually feel sorry for anyone who uses PS (and a lot of people do). You can spot on a screen it a mile away. The tight, small fonts and little boxes littered all over the screen. There's no responsive behavior, and it's uninviting, slow and unintuitive. There's no modern look to the elements (a la Bootstrap, etc.) and some boxes are too small for content they are to hold. The fonts used look like the ones on the original 80x25 IBM PC.
 
-A rant? You bet. But its design makes it so exhausting to use. Here are some examples.
+A rant? You bet. But PS's human-facing design makes it so exhausting to use. Here are some examples.
 
+## Element not sized properly 
 Here's a box that is supposed to hold five letters, one for each a day of the work-week:
 
 <img src=https://github.com/tbensky/selenium-peoplesoft/blob/master/Images/000_day_pattern.png height=100>
 
 Changes to PS are impossible to implement, because it is typically used by large organizations requring many levels of committees for approving fixes. 
+
+## Force the human to do more work
 
 Some text-entry boxes require one to input data in a certain format, which could be eliminated with some simple form-data processing on the server side. 
 
@@ -42,13 +45,20 @@ The days of the week tick boxes don't quite align with the labels:
 
 <img src=https://github.com/tbensky/selenium-peoplesoft/blob/master/Images/009_align.png width=200>
 
-Maybe a small thing, but requires extra work and mental focus to be sure ticks are correct. Everytime.  Then there's the dreaded spinners and calls to the server with each focus change for a every form entry element (=slow). 
+Maybe a small thing, but requires extra work and mental focus to be sure ticks are correct. Everytime.  
+
+## Server access after every element
+
+Then there's the dreaded spinners and calls to the server with each focus change for a every form entry element (=slow). 
 
 <img src=https://github.com/tbensky/selenium-peoplesoft/blob/master/Images/004_spinner.png width=100>
 
-(Note: These annoying spinners will turn out to be very useful later on.)
+(Note: These annoying spinners will however, turn out to be very useful later on.)
 
-The point of this rant is that if I find PS is so unfriendly (and exhausting) to use, why not look for some kind of automation to drive any PS transactions, in particular data entry?
+
+## My point?
+
+I find PS to be so unfriendly (and exhausting) to use, so why not look for some kind of automation to drive any PS transactions, in particular data entry?
 
 At one point a while back, I said "enough."  For at least a week, I was contemplating aiming a video feed at my computer screen, and using OpenCV, to control an Arudino Leonardo simulating mouse clicks and keystrokes to input my data.  Luckily, a friend who does web-development once showed me a testing tool called "Selenium," so I decided to take a look. It even says on their website "Boring web-based administration tasks can (and should) also be automated..."  
 
