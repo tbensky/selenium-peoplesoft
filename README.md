@@ -27,7 +27,7 @@ Sometimes one has to special click-and-scroll into it to check if all needed day
 
 Some text-entry boxes require one to input data in a certain format, which could be eliminated with some simple form-data processing on the server side. 
 
-Further, suppose I need to place a class in room 101 of building 180. How about typing in 180-101? 
+In this case, suppose I need to place a class in room 101 of building 180. How about typing in 180-101? 
 
 <img src=https://github.com/tbensky/selenium-peoplesoft/blob/master/Images/005_180101_01.png height=200>
 
