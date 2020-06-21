@@ -15,7 +15,7 @@ I'm not even sure what "PeopleSoft" (PS) actually is, but the curse for me is th
 
 A rant? You bet. But PS's human-facing design makes it so exhausting to use. Here are some examples.
 
-## Element not sized properly 
+## Elements not sized properly 
 Here's a box that is supposed to hold five letters, one for each a day of the work-week:
 
 <img src=https://github.com/tbensky/selenium-peoplesoft/blob/master/Images/000_day_pattern.png height=100>
@@ -40,6 +40,8 @@ No again. How about 180 -0101?
 
 
 Ok, finally. Everyone using PS at my organization has to type an extra space, and zero pad the room number. Everyone, everytime. Wow.
+
+## Poor layout
 
 The days of the week tick boxes don't quite align with the labels:
 
