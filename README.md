@@ -16,11 +16,12 @@ I'm not even sure what "PeopleSoft" (PS) actually is, but the curse for me is th
 A rant? You bet. But PS's human-facing design makes it so exhausting to use. Here are some examples.
 
 ## Elements not sized properly 
-Here's a box that is supposed to hold five letters, one for each a day of the work-week:
+Here's a box that is supposed to hold five letters, one for each a day of the work-week. It only holds four though:  
 
 <img src=https://github.com/tbensky/selenium-peoplesoft/blob/master/Images/000_day_pattern.png height=100>
 
-Changes to PS are impossible to implement, because it is typically used by large organizations requring many levels of committees for approving fixes. 
+Sometimes one has to special click-and-scroll into it to check if all needed days are there.
+
 
 ## Force the human to do more work
 
@@ -60,9 +61,12 @@ Then there's the dreaded spinners and calls to the server with each focus change
 
 ## My point?
 
-I find PS to be so unfriendly (and exhausting) to use, so why not look for some kind of automation to drive any PS transactions, in particular data entry?
+I find PS to be so unfriendly (and exhausting) to use. Further, changes to PS are nearly impossible to implement, because it is typically used by large organizations requring many levels of committees for approving fixes.  
 
-At one point a while back, I said "enough."  For at least a week, I was contemplating aiming a video feed at my computer screen, and using OpenCV, to control an Arudino Leonardo simulating mouse clicks and keystrokes to input my data.  Luckily, a friend who does web-development once showed me a testing tool called "Selenium," so I decided to take a look. It even says on their website "Boring web-based administration tasks can (and should) also be automated..."  
+At one point a while back, I said "enough." As long as PS appears to be written for robots to use, let's find one to use it for us!   For at least a week, I was contemplating aiming a video feed at my computer screen, and using OpenCV, to control an Arudino Leonardo simulating mouse clicks and keystrokes to input my data.  Luckily, a friend who does web-development once showed me a testing tool called "Selenium," so I decided to take a look. It even says on their website "Boring web-based administration tasks can (and should) also be automated..."  
+
+Yes! Why not look for some kind of automation to drive any PS transactions, in particular data entry? 
+
 
 
 # My data entry needs for PeopleSoft
